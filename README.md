@@ -6,4 +6,5 @@
 Single change here
 Some merge conflict
 Yet another edit
-Just a change
+Just a change\
+test test test
