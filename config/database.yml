@@ -56,5 +56,5 @@ production:
   encoding: unicode
   database: bars_production
   pool: 5
-  username: 
+  username:
   password:
