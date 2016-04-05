@@ -7,8 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= button_to "Sign in", new_user_session_path %>
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+  <%= button_to "Edit profile", edit_user_registration_path, method: :get %>
+  <header>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  </header>
 
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>

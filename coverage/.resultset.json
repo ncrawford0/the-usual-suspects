@@ -1,0 +1,78 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/mattmckelvey/the-usual-suspects/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/mattmckelvey/the-usual-suspects/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/Users/mattmckelvey/the-usual-suspects/app/controllers/bars_controller.rb": [
+        1,
+        null,
+        1,
+        8,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/mattmckelvey/the-usual-suspects/app/models/bar.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/mattmckelvey/the-usual-suspects/app/controllers/users/sessions_controller.rb": [
+        1,
+        1,
+        4,
+        null,
+        null,
+        1,
+        4,
+        null,
+        null
+      ],
+      "/Users/mattmckelvey/the-usual-suspects/app/models/user.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "timestamp": 1459885568
+  }
+}
