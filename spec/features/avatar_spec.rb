@@ -15,7 +15,7 @@ feature "profile photo" do
 
     expect(page).to have_content("Edit User")
     image_file = page.find('.avatar')['src']
-    expect(image_file).to include ('avatar.jpg')
-    
+    expect(image_file).to include 'avatar.jpg'
+
   end
 end
