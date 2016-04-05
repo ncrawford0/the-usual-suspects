@@ -4,3 +4,4 @@
 ![Coverage Status](https://coveralls.io/repos/ncrawford0/the-usual-suspects/badge.png)
 
 Single change here
+Yet another edit
