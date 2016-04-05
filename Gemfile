@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'dotenv-rails'
 gem 'devise'
 gem 'pry-rails'
+gem 'carrierwave'
 
 group :doc do
   gem 'sdoc', require: false
