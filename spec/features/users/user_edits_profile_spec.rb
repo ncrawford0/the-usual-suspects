@@ -1,11 +1,9 @@
 require "rails_helper"
 
 feature "user updates their user details" do
-
-  let(:new_user) { User.create(email: "mckelvey.matt@gmail.com", password: "12345678") }
+  let!(:new_user) { User.create(email: "mckelvey.matt@gmail.com", password: "12345678") }
 
   scenario "successfully updates log-in information" do
-    new_user
     visit user_session_path
     fill_in "Email", with: "mckelvey.matt@gmail.com"
     fill_in "Password", with: "12345678"
@@ -21,7 +19,6 @@ feature "user updates their user details" do
   end
 
   scenario "submits form with email and current password blank" do
-    new_user
     visit user_session_path
     fill_in "Email", with: "mckelvey.matt@gmail.com"
     fill_in "Password", with: "12345678"
