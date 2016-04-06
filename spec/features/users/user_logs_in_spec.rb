@@ -1,7 +1,6 @@
 require "rails_helper"
 feature "user logs into account" do
-  let!(:new_user) { User.create(email: "mckelvey.matt@gmail.com",
-    password: "12345678") }
+  let!(:new_user) { User.create(email: "mckelvey.matt@gmail.com", password: "12345678") }
 
   scenario "successfully logs in" do
     visit user_session_path

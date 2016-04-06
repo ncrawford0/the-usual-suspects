@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "user logs out of page" do
   scenario "successfully logs out" do
-    new_user = User.create(email: "mckelvey.matt@gmail.com",
+    User.create(email: "mckelvey.matt@gmail.com",
     password: "12345678")
 
     visit user_session_path
