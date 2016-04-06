@@ -2,8 +2,10 @@
 <html>
 <head>
   <title>Bars</title>
+  <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "vendor/modernizr" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -11,11 +13,25 @@
   <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
   <%= button_to "Edit profile", edit_user_registration_path, method: :get %>
   <header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <!-- <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p> -->
   </header>
 
-  <%= yield %>
+  <% if flash.any? %>
+    <div class="alert callout">
+      <strong><%= flash[:notice] %></strong>
+      <strong><%= flash[:error] %></strong>
+      <strong><%= flash[:alert] %></strong>
+    </div>
+  <% end %>
+
+  <div class="container">
+    <div class="row">
+      <div class="column">
+          <%= yield %>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

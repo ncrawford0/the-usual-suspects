@@ -6,13 +6,14 @@ class BarsController < ApplicationController
 
   def new
     @bar = Bar.new
+    # @review = Review.new
   end
 
   def create
     @bar = Bar.new(bar_params)
 
     if @bar.save
-      flash[:notice] = "Bar added successfully"
+      flash[:notice] = "Bar added successfully."
       redirect_to bar_path(@bar)
     else
       flash[:error] = @bar.errors.full_messages.join(". ")
@@ -22,6 +23,30 @@ class BarsController < ApplicationController
 
   def show
     @bar = Bar.find(params[:id])
+  end
+
+  def edit
+    @bar = Bar.find(params[:id])
+  end
+
+  def update
+  @bar = Bar.find(params[:id])
+  if @bar.update_attributes(bar_params)
+    flash[:notice] = "Bar updated successfully."
+    redirect_to bars_path(@bar)
+  else
+    flash[:error] = @bar.errors.full_messages.join(". ")
+    render :edit
+  end
+end
+
+  def destroy
+    @bar = Bar.find(params[:id])
+    # @reviews = @bar.reviews
+    if @bar.destroy!
+      flash[:notice] = "#{@bar.name} has been deleted."
+      redirect_to bars_path
+    end
   end
 
   private
