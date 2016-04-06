@@ -1,5 +1,5 @@
-require 'pry'
-require 'mailgun'
+require "pry"
+require "mailgun"
 class ReviewsController < ApplicationController
   def index
     @reviews = Review.all

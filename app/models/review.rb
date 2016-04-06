@@ -7,5 +7,5 @@ class Review < ActiveRecord::Base
   validates :bar_id, presence: true
   validates :user_id, presence: true
   validates :rating, presence: true,
-  numericality: { integer: true }, inclusion: { in: 1..5 }
+            numericality: { integer: true }, inclusion: { in: 1..5 }
 end
