@@ -1,3 +1,5 @@
+require 'pry'
+require 'mailgun'
 class ReviewController < ApplicationController
   def index
     @reviews = Review.all
@@ -10,13 +12,13 @@ class ReviewController < ApplicationController
   def edit
     @review = Review.find(params[:id])
   end
-
+  
   def update
     @review = Review.find(params[:id])
     if @review.update_attributes(review_params)
-      # redirect and flash message
+      flash[:notice] = "Review updated."
     else
-      # render and flash message
+      flash[:notice] = "Review was not updated."
     end
   end
 
@@ -29,20 +31,21 @@ class ReviewController < ApplicationController
     @review = Review.new(review_params)
     @review.bar = @bar
     @review.user = current_user
+    Binding.pry
     if @review.save!
-      # redirect
+      redirect bars_path
     else
-      # flash alert and render
+      lash[:notice] = "Bar did not save."
     end
   end
 
   def destroy
     @review = Review.find(params[:id])
     if @review.destroy!
-      # flash[:notice] = "Review deleted."
-      # redirect_to bars_path
-    # else
-      # flash and render
+      flash[:notice] = "Review deleted."
+      redirect_to bars_path
+    else
+      lash[:notice] = "Bar did not delete."
     end
   end
 
