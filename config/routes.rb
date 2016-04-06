@@ -3,6 +3,11 @@ Bars::Application.routes.draw do
 
   root to: "bars#index"
   resources :bars do
-    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
+    resources :reviews, only: [:create]
   end
+
+  resources :reviews, only: [:create]
 end
+
+
+# , :edit, :update, :destroy, :new

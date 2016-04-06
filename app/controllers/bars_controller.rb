@@ -4,13 +4,19 @@ class BarsController < ApplicationController
     @bars = Bar.all
   end
 
+  def show
+    @bar = Bar.find(params[:id])
+    @review = Review.new
+    @reviews = @bar.reviews.order(created_at: :asc)
+  end
+
   def new
     @bar = Bar.new
-    # @review = Review.new
   end
 
   def create
     @bar = Bar.new(bar_params)
+    @bar.user = current_user
 
     if @bar.save
       flash[:notice] = "Bar added successfully."
@@ -19,10 +25,6 @@ class BarsController < ApplicationController
       flash[:error] = @bar.errors.full_messages.join(". ")
       render :new
     end
-  end
-
-  def show
-    @bar = Bar.find(params[:id])
   end
 
   def edit

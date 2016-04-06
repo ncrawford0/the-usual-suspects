@@ -4,8 +4,10 @@ class Review < ActiveRecord::Base
 
   validates :title, presence: true
   validates :body, presence: true
-  validates :bar_id, presence: true
-  validates :user_id, presence: true
-  validates :rating, presence: true,
-  numericality: { integer: true }, inclusion: { in: 1..5 }
+  validates :bar, presence: true
+  validates :user, presence: true
+  validates :rating,
+    presence: true,
+    numericality: { integer: true },
+    inclusion: { in: 1..5 }
 end
