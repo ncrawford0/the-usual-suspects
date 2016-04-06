@@ -1,6 +1,6 @@
 require 'pry'
 require 'mailgun'
-class ReviewController < ApplicationController
+class ReviewsController < ApplicationController
   def index
     @reviews = Review.all
   end

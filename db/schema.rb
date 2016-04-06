@@ -45,10 +45,10 @@ ActiveRecord::Schema.define(version: 20160405191647) do
     t.integer  "rating",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
 
 
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+    add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
