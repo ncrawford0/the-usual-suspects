@@ -12,7 +12,7 @@ class ReviewController < ApplicationController
   def edit
     @review = Review.find(params[:id])
   end
-  
+
   def update
     @review = Review.find(params[:id])
     if @review.update_attributes(review_params)
@@ -33,19 +33,23 @@ class ReviewController < ApplicationController
     @review.user = current_user
     Binding.pry
     if @review.save!
-      redirect bars_path
+      flash[:alert] = "You've succesfully added a review"
+      # redirect_to bar_path(@bar)
     else
-      lash[:notice] = "Bar did not save."
+      flash[:alert] = "Failed to save review"
+      # render :new
     end
   end
 
   def destroy
+    @bar = Bar.find(params[:bar_id])
     @review = Review.find(params[:id])
     if @review.destroy!
-      flash[:notice] = "Review deleted."
-      redirect_to bars_path
+      flash[:notice] = "The Review Has Been Deleted."
+      # redirect_to bar_path(@bar)
     else
-      lash[:notice] = "Bar did not delete."
+      flash[:notice] = "The Review Was Unable To Be Removed"
+      # render :'bar/show'
     end
   end
 
