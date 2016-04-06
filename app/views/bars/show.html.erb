@@ -1,0 +1,7 @@
+<h1><%= @bar.name %></h1>
+  </br>
+    <%= @bar.description %>
+  </br>
+  <%= button_to "Edit bar", edit_bar_path, method: :get %>
+  <%= button_to "Delete bar", bar_path(@bar), method: :delete %>
+  <%= button_to "View all bars", bars_path, method: :get %>

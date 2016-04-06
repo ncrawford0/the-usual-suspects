@@ -13,6 +13,7 @@ gem 'dotenv-rails'
 gem 'devise'
 gem 'pry-rails'
 gem 'carrierwave'
+gem 'foundation-rails'
 
 group :doc do
   gem 'sdoc', require: false
