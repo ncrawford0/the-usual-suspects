@@ -1,7 +1,6 @@
 require "rails_helper"
 
 feature "authenticated user edits an existing bar" do
-
   let(:new_user) { User.create(email: "mckelvey.matt@gmail.com", password: "12345678") }
   let(:bar1) { Bar.create(name: "Happy Hour Lasagna", description: "Where are we at?") }
 
@@ -15,7 +14,6 @@ feature "authenticated user edits an existing bar" do
   end
 
   scenario "successfully edits a bar" do
-
     click_link "Happy Hour Lasagna"
     click_button "Edit bar"
     fill_in "Name", with: "This is the new bar"
@@ -26,7 +24,6 @@ feature "authenticated user edits an existing bar" do
   end
 
   scenario "submits form without a name or description" do
-
     click_link "Happy Hour Lasagna"
     click_button "Edit bar"
     fill_in "Name", with: ""
