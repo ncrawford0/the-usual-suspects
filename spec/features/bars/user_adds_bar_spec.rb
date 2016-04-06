@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "authenticated user adds a bar" do
   let(:new_user) { User.create(email: "mckelvey.matt@gmail.com", password: "12345678") }
-  
+
   before(:each) do
     new_user
     visit user_session_path
@@ -27,6 +27,6 @@ feature "authenticated user adds a bar" do
     click_button "Add Bar"
 
     expect(page).to have_content("Add Bar")
-    expect(page).to have_content("Name can"t be blank. Description can"t be blank")
+    expect(page).to have_content("Name can't be blank. Description can't be blank")
   end
 end
