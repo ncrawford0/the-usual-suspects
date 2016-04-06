@@ -3,14 +3,16 @@ require "rails_helper"
 feature "authenticated user adds a bar" do
   let(:new_user) { User.create(email: "mckelvey.matt@gmail.com", password: "12345678") }
 
-  scenario "successfully creates a new bar" do
-
+  before(:each) do
     new_user
     visit user_session_path
     fill_in 'Email', with: 'mckelvey.matt@gmail.com'
     fill_in 'Password', with: '12345678'
     click_button "Log in"
-    save_and_open_page
+  end
+
+  scenario "successfully creates a new bar" do
+
     click_button "Add New Bar"
     fill_in 'Name', with: 'Beantown Pub'
     fill_in 'Description', with: 'After hours cocktail bar with pool.'
@@ -21,11 +23,6 @@ feature "authenticated user adds a bar" do
 
   scenario "submits form without a name or description" do
 
-    new_user
-    visit user_session_path
-    fill_in 'Email', with: 'mckelvey.matt@gmail.com'
-    fill_in 'Password', with: '12345678'
-    click_button "Log in"
     click_button "Add New Bar"
     fill_in 'Name', with: ''
     fill_in 'Description', with: ''

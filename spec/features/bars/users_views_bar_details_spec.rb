@@ -2,11 +2,10 @@ require "rails_helper"
 
 feature "non-user views a bar's details" do
 
-  let(:bar1) { Bar.create(name: "Happy Hour Lasagna", description: "Where are we at?") }
+  let!(:bar1) { Bar.create(name: "Happy Hour Lasagna", description: "Where are we at?") }
 
   scenario "sees all details" do
 
-    bar1
     visit bars_path
     click_link "Happy Hour Lasagna"
 
