@@ -31,19 +31,24 @@ class ReviewController < ApplicationController
     @review.bar = @bar
     @review.user = current_user
     if @review.save!
-      #redirect
+      flash[:alert] = "You've succesfully added a review"
+      # redirect_to bar_path(@bar)
     else
-      #flash alert and render
+      flash[:alert] = "Failed to save review"
+      # render :new
     end
+
   end
 
   def destroy
+    @bar = Bar.find(params[:bar_id])
     @review = Review.find(params[:id])
     if @review.destroy!
-      #flash[:notice] = "Review deleted."
-      #redirect_to bars_path
+      flash[:notice] = "The Review Has Been Deleted."
+      # redirect_to bar_path(@bar)
     else
-      #flahs and render
+      flash[:notice] = "The Review Was Unable To Be Removed"
+      # render :'bar/show'
     end
   end
 
