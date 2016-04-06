@@ -2,7 +2,6 @@ require "rails_helper"
 
 feature "non-user views a list of bars" do
   scenario "sees all bars" do
-
     new_bar = Bar.create(name: "Beantown Pub", description: "Cool bar, guy.")
 
     visit bars_path
