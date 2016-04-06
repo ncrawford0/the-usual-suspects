@@ -1,5 +1,4 @@
 class ReviewController < ApplicationController
-
   def index
     @reviews = Review.all
   end
@@ -15,9 +14,9 @@ class ReviewController < ApplicationController
   def update
     @review = Review.find(params[:id])
     if @review.update_attributes(review_params)
-      #redirect and flash message
+      # redirect and flash message
     else
-      #render and flash message
+      # render and flash message
     end
   end
 
@@ -31,19 +30,19 @@ class ReviewController < ApplicationController
     @review.bar = @bar
     @review.user = current_user
     if @review.save!
-      #redirect
+      # redirect
     else
-      #flash alert and render
+      # flash alert and render
     end
   end
 
   def destroy
     @review = Review.find(params[:id])
     if @review.destroy!
-      #flash[:notice] = "Review deleted."
-      #redirect_to bars_path
-    else
-      #flahs and render
+      # flash[:notice] = "Review deleted."
+      # redirect_to bars_path
+    # else
+      # flash and render
     end
   end
 
