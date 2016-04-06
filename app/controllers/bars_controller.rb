@@ -42,7 +42,6 @@ end
 
   def destroy
     @bar = Bar.find(params[:id])
-    # @reviews = @bar.reviews
     if @bar.destroy!
       flash[:notice] = "#{@bar.name} has been deleted."
       redirect_to bars_path
