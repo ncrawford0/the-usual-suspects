@@ -1,12 +1,12 @@
 require "rails_helper"
 
 feature "authenticated user adds a bar" do
-  let(:new_user) { User.create(email: "a@gmail.com", password: "12345678") }
+  let(:new_user) { User.create(email: "abcd@gmail.com", password: "12345678") }
 
   before(:each) do
     new_user
     visit user_session_path
-    fill_in "Email", with: "mckelvey.matt@gmail.com"
+    fill_in "Email", with: "abcd@gmail.com"
     fill_in "Password", with: "12345678"
     click_button "Log in"
   end

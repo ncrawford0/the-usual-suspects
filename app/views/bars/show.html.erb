@@ -7,9 +7,11 @@
 
 <% @reviews.each do |review| %>
   <ul>
-  Title: <%= review.title %>
-  <li>Review: <%= review.body %></li>
-  <li>Rating: <%= review.rating %></li>
+    Title: <%= review.title %>
+    <li>Review: <%= review.body %></li>
+    <li>Rating: <%= review.rating %></li>
+    <li><%= button_to "Edit", edit_bar_review_path(@bar, review), method: :get %></li>
+    <li><%= button_to "Delete", bar_review_path(@bar, review), method: :delete, data: { confirm: "Are you sure?" } %></li>
   </ul>
 <% end %>
 
@@ -35,6 +37,5 @@
   </div>
 <% end %>
 
-  <%= button_to "Edit bar", edit_bar_path, method: :get %>
-  <%= button_to "Delete bar", bar_path(@bar), method: :delete, data: { confirm: "Are you sure?" } %>
-  <%= button_to "View all bars", bars_path, method: :get %>
+  <%= button_to "Edit Bar", edit_bar_path(@bar), method: :get %>
+  <%= button_to "View All Bars", bars_path, method: :get %>
