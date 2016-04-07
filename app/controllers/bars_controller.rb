@@ -16,7 +16,6 @@ class BarsController < ApplicationController
 
   def create
     @bar = Bar.new(bar_params)
-    @bar.user = current_user
 
     if @bar.save
       flash[:notice] = "Bar added successfully."
@@ -53,7 +52,7 @@ class BarsController < ApplicationController
   private
 
   def bar_params
-    params.require(:bar).permit(:name, :description)
+    params.require(:bar).permit(:name, :description, :user)
   end
 
 end

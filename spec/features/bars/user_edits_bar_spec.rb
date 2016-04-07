@@ -1,8 +1,8 @@
 require "rails_helper"
 
 feature "authenticated user edits an existing bar" do
-  let(:new_user) { User.create(email: "mckelvey.matt@gmail.com", password: "12345678") }
-  let(:bar1) { Bar.create(name: "Happy Hour Lasagna", description: "Where are we at?") }
+  let(:new_user) { User.create(email: "a3@gmail.com", password: "12345678") }
+  let(:bar1) { Bar.create(name: "Happy Hour Lasagna", description: "Where are we at?", user: new_user) }
 
   before(:each) do
     new_user

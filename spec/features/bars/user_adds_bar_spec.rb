@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "authenticated user adds a bar" do
-  let(:new_user) { User.create(email: "mckelvey.matt@gmail.com", password: "12345678") }
+  let(:new_user) { User.create(email: "a@gmail.com", password: "12345678") }
 
   before(:each) do
     new_user

@@ -2,7 +2,8 @@ require "rails_helper"
 
 feature "non-user views a list of bars" do
   scenario "sees all bars" do
-    new_bar = Bar.create(name: "Beantown Pub", description: "Cool bar, guy.")
+    user1 = User.create(email: "a4@gmail.com", password: "12345678")
+    new_bar = Bar.create(name: "Beantown Pub", description: "Cool bar, guy.", user: user1)
     visit bars_path
 
     expect(page).to have_content("All Bars")
