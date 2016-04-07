@@ -4,16 +4,6 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_access, only: [:edit, :destroy]
 
-  def require_access
-    @bar = Bar.find(params[:bar_id])
-    @review = Review.find(params[:id])
-    @user = @review.user
-    if @user != current_user
-      flash[:error] = "You do not have permission to make this change."
-      redirect_to bar_path(@bar)
-    end
-  end
-
   def index
     @bars = Bar.all
   end
@@ -70,7 +60,19 @@ class ReviewsController < ApplicationController
     end
   end
 
+  private
+
   def review_params
     params.require(:review).permit(:title, :body, :bar_id, :user_id, :rating)
+  end
+
+  def require_access
+    @bar = Bar.find(params[:bar_id])
+    @review = Review.find(params[:id])
+    @user = @review.user
+    if @user != current_user
+      flash[:error] = "You do not have permission to make this change."
+      redirect_to bar_path(@bar)
+    end
   end
 end
