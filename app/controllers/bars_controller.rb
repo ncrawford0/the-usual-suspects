@@ -1,9 +1,6 @@
-require 'mailgun'
-require 'dotenv'
+require "mailgun"
+require "dotenv"
 Dotenv.load
-
-
-
 class BarsController < ApplicationController
 
   def index
@@ -14,7 +11,6 @@ class BarsController < ApplicationController
     @bar = Bar.find(params[:id])
     @review = Review.new
     @reviews = @bar.reviews.order(created_at: :asc)
-
   end
 
   def new
