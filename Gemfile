@@ -14,6 +14,8 @@ gem 'devise'
 gem 'pry-rails'
 gem 'carrierwave'
 gem 'foundation-rails'
+gem 'dotenv'
+gem 'mailgun-ruby', require: 'mailgun'
 
 group :doc do
   gem 'sdoc', require: false
