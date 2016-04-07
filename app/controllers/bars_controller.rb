@@ -1,4 +1,3 @@
-Dotenv.load
 class BarsController < ApplicationController
 
   def index
@@ -16,7 +15,6 @@ class BarsController < ApplicationController
   end
 
   def create
-
     current_user
     @bar = Bar.new(bar_params)
     @bar.user = @current_user
