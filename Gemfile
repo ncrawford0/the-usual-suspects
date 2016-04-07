@@ -14,6 +14,7 @@ gem 'devise'
 gem 'pry-rails'
 gem 'carrierwave'
 gem 'foundation-rails'
+gem 'launchy'
 
 group :doc do
   gem 'sdoc', require: false

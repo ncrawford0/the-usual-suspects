@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "authenticated user adds a bar" do
+feature "user adds a bar" do
   let(:new_user) { User.create(email: "abcd@gmail.com", password: "12345678") }
 
   before(:each) do
@@ -11,7 +11,7 @@ feature "authenticated user adds a bar" do
     click_button "Log in"
   end
 
-  scenario "successfully creates a new bar" do
+  scenario "authenticated user successfully creates a new bar" do
     click_button "Add New Bar"
     fill_in "Name", with: "Beantown Pub"
     fill_in "Description", with: "After hours cocktail bar with pool."
@@ -20,7 +20,7 @@ feature "authenticated user adds a bar" do
     expect(page).to have_content("Beantown Pub")
   end
 
-  scenario "submits form without a name or description" do
+  scenario "authenticated user submits form without a name or description" do
     click_button "Add New Bar"
     fill_in "Name", with: ""
     fill_in "Description", with: ""
@@ -28,5 +28,13 @@ feature "authenticated user adds a bar" do
 
     expect(page).to have_content("Add Bar")
     expect(page).to have_content("Name can't be blank. Description can't be blank")
+  end
+
+  scenario "unauthenticated user submits form" do
+    click_button "Sign out"
+    click_button "Add New Bar"
+
+    expect(page).to have_content("Log in")
+    expect(page).to have_content("You need to sign in or sign up before continuing")
   end
 end
