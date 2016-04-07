@@ -1,5 +1,3 @@
-require "mailgun"
-require "dotenv"
 Dotenv.load
 class BarsController < ApplicationController
 
@@ -18,6 +16,7 @@ class BarsController < ApplicationController
   end
 
   def create
+
     current_user
     @bar = Bar.new(bar_params)
     @bar.user = @current_user
