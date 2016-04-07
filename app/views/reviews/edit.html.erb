@@ -1,0 +1,21 @@
+<h4>Edit Review</h4>
+<%= form_for [@bar, @review] do |f| %>
+  <div class="field">
+    <%= f.label :title %></br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body, "Review" %></br>
+    <%= f.text_field :body %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rating %></br>
+    <%= f.text_field :rating %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save Changes" %></br>
+  </div>
+<% end %>

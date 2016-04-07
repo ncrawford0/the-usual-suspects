@@ -1,6 +1,41 @@
 <h1><%= @bar.name %></h1>
 <%= @bar.description %></br>
 
-<%= button_to "Edit bar", edit_bar_path, method: :get %>
-<%= button_to "Delete bar", bar_path(@bar), method: :delete %>
-<%= button_to "View all bars", bars_path, method: :get %>
+<% if @reviews.any? %>
+ <h4><%= @bar.name %>'s Reviews</h4>
+<% end %>
+
+<% @reviews.each do |review| %>
+  <ul>
+    Title: <%= review.title %>
+    <li>Review: <%= review.body %></li>
+    <li>Rating: <%= review.rating %></li>
+    <li><%= button_to "Edit", edit_bar_review_path(@bar, review), method: :get %></li>
+    <li><%= button_to "Delete", bar_review_path(@bar, review), method: :delete, data: { confirm: "Are you sure?" } %></li>
+  </ul>
+<% end %>
+
+<h4>Add Review</h4>
+<%= form_for [@bar, @review] do |f| %>
+  <div class="field">
+    <%= f.label :title %></br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body, "Review" %></br>
+    <%= f.text_field :body %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rating %></br>
+    <%= f.text_field :rating %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %></br>
+  </div>
+<% end %>
+
+  <%= button_to "Edit Bar", edit_bar_path(@bar), method: :get %>
+  <%= button_to "View All Bars", bars_path, method: :get %>
