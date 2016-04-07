@@ -32,15 +32,15 @@ class BarsController < ApplicationController
   end
 
   def update
-  @bar = Bar.find(params[:id])
-  if @bar.update_attributes(bar_params)
-    flash[:notice] = "Bar updated successfully."
-    redirect_to bars_path(@bar)
-  else
-    flash[:error] = @bar.errors.full_messages.join(". ")
-    render :edit
+    @bar = Bar.find(params[:id])
+    if @bar.update_attributes(bar_params)
+      flash[:notice] = "Bar updated successfully."
+      redirect_to bars_path(@bar)
+    else
+      flash[:error] = @bar.errors.full_messages.join(". ")
+      render :edit
+    end
   end
-end
 
   def destroy
     @bar = Bar.find(params[:id])

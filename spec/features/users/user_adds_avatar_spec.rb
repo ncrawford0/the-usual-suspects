@@ -14,8 +14,8 @@ feature "profile photo" do
     visit "/users/edit"
 
     expect(page).to have_content("Edit User")
-    image_file = page.find('.avatar')['src']
-    expect(image_file).to include 'avatar.jpg'
+    image_file = page.find(".avatar")["src"]
+    expect(image_file).to include "avatar.jpg"
 
   end
 end

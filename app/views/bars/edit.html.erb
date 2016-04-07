@@ -1,13 +1,16 @@
 <h1>Edit Bar</h1>
 
 <%= form_for(@bar) do |f| %>
-<%= f.label :name %> </br>
-<%= f.text_field :name %>
-</br>
-<%= f.label :description %> </br>
-<%= f.text_field :description %>
-</br>
-<%= f.submit "Update bar" %>
+  <%= f.label :name %>
+  </br>
+  <%= f.text_field :name %>
+  </br>
+  <%= f.label :description %>
+  </br>
+  <%= f.text_field :description %>
+  </br>
+  <%= f.submit "Update bar" %>
 <% end %>
+
 <%= button_to "Delete bar", bar_path(@bar), method: :delete %>
 <%= button_to 'Cancel', bars_path, method: :get %>
