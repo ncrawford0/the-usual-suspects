@@ -5,7 +5,7 @@ feature "user edits a review" do
 
   before(:each) do
     visit user_session_path
-    fill_in "Email", with: "mckelvey.matt@gmail.com"
+    fill_in "Email", with: new_user.email
     fill_in "Password", with: "12345678"
     click_button "Log in"
     click_button "Add New Bar"

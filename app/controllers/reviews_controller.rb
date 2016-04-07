@@ -1,4 +1,3 @@
-require "pry"
 require "mailgun"
 
 class ReviewsController < ApplicationController
@@ -53,7 +52,6 @@ class ReviewsController < ApplicationController
       redirect_to bar_path(@bar)
     end
   end
-
 
   def review_params
     params.require(:review).permit(:title, :body, :bar_id, :user_id, :rating)
