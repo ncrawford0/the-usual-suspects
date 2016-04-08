@@ -25,7 +25,7 @@ feature "user adds a review to bar" do
     expect(page).to have_content("5")
   end
 
-  scenario "submits form without title, body, or rating" do
+  scenario "authenticated user submits form without title, body, or rating" do
     fill_in "Title", with: ""
     fill_in "Review", with: ""
     fill_in "Rating", with: ""
@@ -36,5 +36,14 @@ feature "user adds a review to bar" do
     expect(page).to have_content("Rating can't be blank.")
     expect(page).to have_content("Rating is not a number.")
     expect(page).to have_content("Rating is not included in the list")
+  end
+
+  scenario "unauthenticated user adds review" do
+    click_button "Sign out"
+    click_link "Beantown Pub"
+    click_button "Edit Bar"
+
+    expect(page).to have_content("Log in")
+    expect(page).to have_content("You need to sign in or sign up before continuing")
   end
 end

@@ -14,6 +14,7 @@ gem 'devise'
 gem 'pry-rails'
 gem 'carrierwave'
 gem 'foundation-rails'
+gem 'launchy'
 gem 'dotenv'
 gem 'mailgun-ruby', require: 'mailgun'
 

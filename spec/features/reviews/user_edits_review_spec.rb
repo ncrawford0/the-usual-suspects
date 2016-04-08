@@ -1,11 +1,12 @@
 require "rails_helper"
 
 feature "user edits a review" do
-  let!(:new_user) { User.create(email: "mckelvey.matt@gmail.com", password: "12345678") }
+  let!(:user1) { User.create(email: "mckelvey.matt@gmail.com", password: "12345678") }
+  let!(:user2) { User.create(email: "abcd4@gmail.com", password: "12345678") }
 
   before(:each) do
     visit user_session_path
-    fill_in "Email", with: new_user.email
+    fill_in "Email", with: user1.email
     fill_in "Password", with: "12345678"
     click_button "Log in"
     click_button "Add New Bar"
@@ -44,5 +45,18 @@ feature "user edits a review" do
     expect(page).to have_content("Rating can't be blank.")
     expect(page).to have_content("Rating is not a number.")
     expect(page).to have_content("Rating is not included in the list")
+  end
+
+  scenario "user edits another user's review" do
+    click_button "Sign out"
+    click_button "Sign in"
+    fill_in "Email", with: user2.email
+    fill_in "Password", with: "12345678"
+    click_button "Log in"
+    click_link "Beantown Pub"
+    click_button "Edit"
+
+    expect(page).to have_content("Beantown Pub")
+    expect(page).to have_content("You do not have permission to make this change")
   end
 end
