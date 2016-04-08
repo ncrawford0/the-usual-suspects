@@ -235,6 +235,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   coveralls
   devise
+  dotenv
   dotenv-rails
   foundation-rails
   jbuilder (~> 1.2)
