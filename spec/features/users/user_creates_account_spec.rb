@@ -35,7 +35,7 @@ feature "new user creates an account" do
     fill_in "Password", with: "1234567"
     fill_in "Password confirmation", with: "9234567"
     click_button "Sign up"
-
+    
     expect(page).to have_content("Password is too short (minimum is 8 characters)")
   end
 end
