@@ -1,7 +1,6 @@
 require "rails_helper"
 
 feature "user deletes an existing bar" do
-
   let!(:user) { FactoryGirl.create(:user) }
   let!(:bar) { FactoryGirl.create(:bar, user: user) }
 

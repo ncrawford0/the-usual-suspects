@@ -6,7 +6,6 @@ feature "user edits an existing bar" do
   let!(:bar1) { FactoryGirl.create(:bar, user: user1) }
   let(:bar2) { FactoryGirl.create(:bar, name: "The Yard House", description: "A brewhouse near fenway where you can buy yards of beer.", user: user1) }
 
-  
   before(:each) do
     visit user_session_path
     fill_in "Email", with: user1.email
