@@ -39,7 +39,7 @@ class ReviewsController < ApplicationController
       flash[:notice] = "Review added"
       redirect_to bar_path(@bar)
       mg_client = Mailgun::Client.new ENV["MAILGUN_API_KEY"]
-      message_params = { from: 'system@bevboston.com',
+      message_params = { from: "system@bevboston.com",
                          to: "#{@bar.user.email}",
                          subject: "#{@review.user.email} has added a comment to your #{@bar.name} page on bevboston.",
                          text: "#{@review.user.email} had this to say about #{@bar.name} '#{@review.title}: #{@review.body}'  You can review their comments here: #{bar_path(@bar)}"
