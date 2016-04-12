@@ -1,23 +1,24 @@
 require "rails_helper"
 
 feature "user adds a bar" do
-  let(:new_user) { User.create(email: "abcd@gmail.com", password: "12345678") }
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:bar) { FactoryGirl.create(:bar, user: user) }
+
 
   before(:each) do
-    new_user
     visit user_session_path
-    fill_in "Email", with: "abcd@gmail.com"
-    fill_in "Password", with: "12345678"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
     click_button "Log in"
   end
 
   scenario "authenticated user successfully creates a new bar" do
     click_button "Add New Bar"
-    fill_in "Name", with: "Beantown Pub"
-    fill_in "Description", with: "After hours cocktail bar with pool."
+    fill_in "Name", with: bar.name
+    fill_in "Description", with: bar.description
     click_button "Add Bar"
 
-    expect(page).to have_content("Beantown Pub")
+    expect(page).to have_content(bar.description)
   end
 
   scenario "authenticated user submits form without a name or description" do
