@@ -6,7 +6,13 @@ feature "user edits a review" do
   let!(:user2) { FactoryGirl.create(:user, email: "janedoe@gmail.com") }
   let!(:bar) { FactoryGirl.create(:bar, user: user1) }
   let!(:review1) { FactoryGirl.create(:review, user: user1, bar: bar) }
-  let(:review2) { FactoryGirl.create(:review, user: user1, bar: bar, title: "Worst bar ever.", body: "My freinds and I had a horible time here.", rating: 1) }
+  let(:review2) do
+    FactoryGirl.create(:review,
+    user: user1, bar: bar,
+    title: "Worst bar ever.",
+    body: "My freinds and I had a horible time here.",
+    rating: 1)
+  end
 
   scenario "authenticated user successfully edits a review" do
     visit bars_path

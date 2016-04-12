@@ -4,7 +4,12 @@ feature "user edits an existing bar" do
   let!(:user1) { FactoryGirl.create(:user) }
   let!(:user2) { FactoryGirl.create(:user, email: "janedoe@gmail.com") }
   let!(:bar1) { FactoryGirl.create(:bar, user: user1) }
-  let(:bar2) { FactoryGirl.create(:bar, name: "The Yard House", description: "A brewhouse near fenway where you can buy yards of beer.", user: user1) }
+  let(:bar2) do
+    FactoryGirl.create(:bar,
+    name: "The Yard House",
+    description: "A brewhouse near fenway where you can buy yards of beer.",
+    user: user1)
+  end
 
   before(:each) do
     visit user_session_path
