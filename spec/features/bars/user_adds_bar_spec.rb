@@ -1,26 +1,27 @@
 require "rails_helper"
 
-feature "authenticated user adds a bar" do
-  let(:new_user) { User.create(email: "abcd@gmail.com", password: "12345678") }
+feature "user adds a bar" do
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:bar) { FactoryGirl.create(:bar, user: user) }
+
 
   before(:each) do
-    new_user
     visit user_session_path
-    fill_in "Email", with: "abcd@gmail.com"
-    fill_in "Password", with: "12345678"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
     click_button "Log in"
   end
 
-  scenario "successfully creates a new bar" do
+  scenario "authenticated user successfully creates a new bar" do
     click_button "Add New Bar"
-    fill_in "Name", with: "Beantown Pub"
-    fill_in "Description", with: "After hours cocktail bar with pool."
+    fill_in "Name", with: bar.name
+    fill_in "Description", with: bar.description
     click_button "Add Bar"
 
-    expect(page).to have_content("Beantown Pub")
+    expect(page).to have_content(bar.description)
   end
 
-  scenario "submits form without a name or description" do
+  scenario "authenticated user submits form without a name or description" do
     click_button "Add New Bar"
     fill_in "Name", with: ""
     fill_in "Description", with: ""
@@ -28,5 +29,13 @@ feature "authenticated user adds a bar" do
 
     expect(page).to have_content("Add Bar")
     expect(page).to have_content("Name can't be blank. Description can't be blank")
+  end
+
+  scenario "unauthenticated user submits form" do
+    click_button "Sign out"
+    click_button "Add New Bar"
+
+    expect(page).to have_content("Log in")
+    expect(page).to have_content("You need to sign in or sign up before continuing")
   end
 end

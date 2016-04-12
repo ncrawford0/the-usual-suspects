@@ -1,4 +1,6 @@
 class BarsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :require_access, only: [:edit, :destroy]
 
   def index
     @bars = Bar.all
@@ -57,4 +59,12 @@ class BarsController < ApplicationController
     params.require(:bar).permit(:name, :description, :user)
   end
 
+  def require_access
+    @bar = Bar.find(params[:id])
+    @user = @bar.user
+    if @user != current_user
+      flash[:error] = "You do not have permission to make this change."
+      redirect_to bar_path(@bar)
+    end
+  end
 end

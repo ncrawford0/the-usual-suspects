@@ -14,13 +14,17 @@ gem 'devise'
 gem 'pry-rails'
 gem 'carrierwave'
 gem 'foundation-rails'
+gem 'launchy'
+gem 'dotenv'
+gem 'mailgun-ruby', require: 'mailgun'
 
 group :doc do
   gem 'sdoc', require: false
 end
 
-group :test do
+group :test, :development do
   gem 'rspec-rails'
   gem 'capybara-rails'
   gem 'coveralls', require: false
+  gem "factory_girl_rails"
 end

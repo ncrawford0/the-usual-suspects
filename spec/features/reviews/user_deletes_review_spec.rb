@@ -1,29 +1,46 @@
 require "rails_helper"
 
 feature "user deletes a review" do
-  let!(:new_user) { User.create(email: "mckelvey.matt@gmail.com", password: "12345678") }
-
-  before(:each) do
-    visit user_session_path
-    fill_in "Email", with: "mckelvey.matt@gmail.com"
-    fill_in "Password", with: "12345678"
-    click_button "Log in"
-    click_button "Add New Bar"
-    fill_in "Name", with: "Beantown Pub"
-    fill_in "Description", with: "After hours cocktail bar with pool."
-    click_button "Add Bar"
-    fill_in "Title", with: "Best bar I've been to"
-    fill_in "Review", with: "We were visiting and had a good time"
-    fill_in "Rating", with: 5
-    click_button "Create Review"
+  let!(:user1) { FactoryGirl.create(:user) }
+  let!(:user2) { FactoryGirl.create(:user, email: "janedoe@gmail.com") }
+  let!(:bar) { FactoryGirl.create(:bar, user: user1) }
+  let!(:review1) { FactoryGirl.create(:review, user: user1, bar: bar) }
+  let(:review2) do
+    FactoryGirl.create(:review,
+    user: user1, bar: bar,
+    title: "Worst bar ever.",
+    body: "My freinds and I had a horible time here.",
+    rating: 1)
   end
 
-  scenario "authenticated user successfully edits a review" do
+  scenario "user attempts to edit another user's review" do
+    visit bars_path
+    click_button "Sign in"
+    fill_in "Email", with: user2.email
+    fill_in "Password", with: user2.password
+    click_button "Log in"
+    click_link bar.name
+    click_button "Edit"
+
+    expect(page).to have_content bar.name
+    expect(page).to have_content("You do not have permission to make this change")
+  end
+
+  scenario "authenticated user successfully deletes a review" do
+    visit bars_path
+    click_button "Sign in"
+    fill_in "Email", with: user1.email
+    fill_in "Password", with: user1.password
+    click_button "Log in"
+    click_link bar.name
     click_button "Delete"
 
     expect(page).to have_content("Review has been deleted")
-    expect(page).not_to have_content("Best bar I've been to")
-    expect(page).not_to have_content("We were visiting and had a good time")
-    expect(page).not_to have_content(5)
+    expect(page).not_to have_content review1.title
+    expect(page).not_to have_content review1.body
+    expect(page).not_to have_content review1.rating
+    expect(page).not_to have_content review2.title
+    expect(page).not_to have_content review2.body
+    expect(page).not_to have_content review2.rating
   end
 end
