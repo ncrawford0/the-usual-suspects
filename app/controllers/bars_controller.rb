@@ -15,9 +15,8 @@ class BarsController < ApplicationController
   end
 
   def create
-    current_user
     @bar = Bar.new(bar_params)
-    @bar.user = @current_user
+    @bar.user = current_user
 
     if @bar.save
       flash[:notice] = "Bar added successfully."
@@ -44,6 +43,7 @@ class BarsController < ApplicationController
   end
 
   def destroy
+    current_user
     @bar = Bar.find(params[:id])
     if @bar.destroy!
       flash[:notice] = "#{@bar.name} has been deleted."
