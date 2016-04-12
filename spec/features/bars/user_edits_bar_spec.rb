@@ -1,29 +1,35 @@
 require "rails_helper"
 
 feature "user edits an existing bar" do
-  let!(:user1) { User.create(email: "abcd2@gmail.com", password: "12345678") }
-  let!(:user2) { User.create(email: "abcd4@gmail.com", password: "12345678") }
-  let!(:bar1) { Bar.create(name: "Happy Hour Lasagna", description: "Where are we at?", user: user1) }
+  let!(:user1) { FactoryGirl.create(:user) }
+  let!(:user2) { FactoryGirl.create(:user, email: "janedoe@gmail.com") }
+  let!(:bar1) { FactoryGirl.create(:bar, user: user1) }
+  let(:bar2) do
+    FactoryGirl.create(:bar,
+    name: "The Yard House",
+    description: "A brewhouse near fenway where you can buy yards of beer.",
+    user: user1)
+  end
 
   before(:each) do
     visit user_session_path
-    fill_in "Email", with: "abcd2@gmail.com"
-    fill_in "Password", with: "12345678"
+    fill_in "Email", with: user1.email
+    fill_in "Password", with: user1.password
     click_button "Log in"
   end
 
   scenario "authenticated user successfully edits a bar" do
-    click_link "Happy Hour Lasagna"
+    click_link bar1.name
     click_button "Edit Bar"
-    fill_in "Name", with: "This is the new bar"
-    fill_in "Description", with: "The best place for a happy hour."
+    fill_in "Name", with: bar2.name
+    fill_in "Description", with: bar2.description
     click_button "Update Bar"
 
-    expect(page).to have_content("This is the new bar")
+    expect(page).to have_content bar2.name
   end
 
   scenario "authenticated user submits form without a name or description" do
-    click_link "Happy Hour Lasagna"
+    click_link bar1.name
     click_button "Edit Bar"
     fill_in "Name", with: ""
     fill_in "Description", with: ""
@@ -35,7 +41,7 @@ feature "user edits an existing bar" do
 
   scenario "unauthenticated user edits bar" do
     click_button "Sign out"
-    click_link "Happy Hour Lasagna"
+    click_link bar1.name
     click_button "Edit Bar"
 
     expect(page).to have_content("Log in")
@@ -46,9 +52,9 @@ feature "user edits an existing bar" do
     click_button "Sign out"
     click_button "Sign in"
     fill_in "Email", with: user2.email
-    fill_in "Password", with: "12345678"
+    fill_in "Password", with: user2.password
     click_button "Log in"
-    click_link "Happy Hour Lasagna"
+    click_link bar1.name
     click_button "Edit Bar"
 
     expect(page).to have_content(bar1.name)
