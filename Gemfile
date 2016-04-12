@@ -17,6 +17,7 @@ gem 'foundation-rails'
 gem 'launchy'
 gem 'dotenv'
 gem 'mailgun-ruby', require: 'mailgun'
+gem 'twitter'
 
 group :doc do
   gem 'sdoc', require: false
