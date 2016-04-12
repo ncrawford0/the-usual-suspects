@@ -10,6 +10,7 @@ class BarsController < ApplicationController
     @bar = Bar.find(params[:id])
     @review = Review.new
     @reviews = @bar.reviews.order(created_at: :asc)
+    @vote_total = Vote.group(:review_id).sum(:count)
   end
 
   def new
@@ -45,6 +46,7 @@ class BarsController < ApplicationController
   end
 
   def destroy
+    current_user
     @bar = Bar.find(params[:id])
     if @bar.destroy!
       flash[:notice] = "#{@bar.name} has been deleted."

@@ -5,4 +5,13 @@ Bars::Application.routes.draw do
   resources :bars do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
   end
+
+  resources :reviews do
+    resources :votes do
+      collection do
+        post 'upvote'
+        post 'downvote'
+      end
+    end
+  end
 end

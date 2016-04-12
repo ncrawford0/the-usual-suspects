@@ -1,16 +1,21 @@
-<h1>Edit Bar</h1>
+<div class="container">
+  <div class="column">
 
-<%= form_for(@bar) do |f| %>
-  <%= f.label :name %>
+    <h1>Edit Bar</h1>
+
+    <%= form_for(@bar) do |f| %>
+    <%= f.label :name %>
   </br>
   <%= f.text_field :name %>
-  </br>
-  <%= f.label :description %>
-  </br>
-  <%= f.text_field :description %>
-  </br>
-  <%= f.submit "Update Bar" %>
+</br>
+<%= f.label :description %>
+</br>
+<%= f.text_field :description %>
+</br>
+<%= f.submit "Update Bar" %>
 <% end %>
 
 <%= button_to "Delete Bar", bar_path(@bar), method: :delete, data: { confirm: "Are you sure?" } %>
 <%= button_to 'Cancel', bars_path, method: :get %>
+</div>
+</div>
