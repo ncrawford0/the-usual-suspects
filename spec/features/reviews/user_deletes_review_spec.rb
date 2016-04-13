@@ -37,8 +37,7 @@ feature "user deletes a review" do
     click_link bar.name
     click_button "Delete"
 
-    expect(page).to have_content("Review has been deleted")
-    expect(page).not_to have_content review1.title
+    expect(page).to have_content("#{review1.title} has been deleted")
     expect(page).not_to have_content review1.body
     expect(page).not_to have_content review1.rating
     expect(page).not_to have_content review2.title
