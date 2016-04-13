@@ -6,7 +6,7 @@ feature "user adds a bar" do
 
 
   before(:each) do
-    visit user_session_path
+    visit new_user_session_path
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
     click_button "Log in"
@@ -32,7 +32,8 @@ feature "user adds a bar" do
   end
 
   scenario "unauthenticated user submits form" do
-    click_button "Sign out"
+    page.find('.dropbtn').click
+    click_link "Sign out"
     click_button "Add New Bar"
 
     expect(page).to have_content("Log in")
