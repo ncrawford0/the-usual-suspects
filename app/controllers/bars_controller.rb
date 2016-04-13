@@ -3,7 +3,7 @@ class BarsController < ApplicationController
   before_action :require_access, only: [:edit, :destroy]
 
   def index
-    @bars = Bar.all
+    @bars = Bar.order(:name).page(params[:page]).per(5)
   end
 
   def show
@@ -45,6 +45,7 @@ class BarsController < ApplicationController
   end
 
   def destroy
+    current_user
     @bar = Bar.find(params[:id])
     if @bar.destroy!
       flash[:notice] = "#{@bar.name} has been deleted."

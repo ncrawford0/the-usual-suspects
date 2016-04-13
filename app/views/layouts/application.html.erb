@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>bevBOSTON | Find your new favorite watering hole in Bahstahn kid.</title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -12,33 +14,43 @@
     <%= csrf_meta_tags %>
   </head>
 
-<body>
+  <div class="message">
+    <% if flash.any? %>
+    <div class="alert callout">
+      <strong><%= flash[:notice] %></strong>
+      <strong><%= flash[:error] %></strong>
+      <strong><%= flash[:alert] %></strong>
+    </div>
+    <% end %>
+  </div>
+  <body>
+    <%= yield %>
+  </body>
 
-<div class="container">
- <div class="row">
-   <div class="column">
-     <%= button_to "Sign in", new_user_session_path %>
-     <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-     <%= button_to "Edit profile", edit_user_registration_path, method: :get %>
-   </div>
- </div>
-</div>
+  <div class="header">
+    <div class="outer">
 
-<% if flash.any? %>
- <div class="alert callout">
-   <strong><%= flash[:notice] %></strong>
-   <strong><%= flash[:error] %></strong>
-   <strong><%= flash[:alert] %></strong>
- </div>
-<% end %>
+      <div class="dropdown">
+        <button class="dropbtn"><img src="../assets/user.png"></button>
+        <div class="dropdown-content">
+          <%= link_to 'Sign up', new_user_registration_path unless current_user %>
+          <%= link_to "Sign in", new_user_session_path unless current_user %>
+          <%= link_to "Edit profile", edit_user_registration_path, method: :get if current_user %>
+          <%= link_to "Sign out", destroy_user_session_path, method: :get if current_user %>
+          <%= link_to "Admin Dash", new_user_registration_path, method: :get unless current_user %>
+        </div>
+      </div>
+      <a href="../bars"><img src="../assets/logo.png"></a>
+      <div class="box">
+        <div class="container-1">
+          <span class="icon">
+            <i class="fa fa-search"></i>
+          </span>
+          <input type="search" id="search" placeholder="Search..."/>
+        </div>
+      </div>
 
-<div class="container">
- <div class="row">
-   <div class="column">
-       <%= yield %>
-   </div>
- </div>
-</div>
-
-</body>
+      </div>
+    </div>
+  </div>
 </html>

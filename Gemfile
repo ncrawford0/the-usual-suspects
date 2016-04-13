@@ -26,6 +26,9 @@ end
 group :test, :development do
   gem 'rspec-rails'
   gem 'capybara-rails'
+  gem 'capybara-webkit'
+  gem 'selenium-webdriver'
+  gem 'kaminari'
   gem 'coveralls', require: false
   gem "factory_girl_rails"
 end
