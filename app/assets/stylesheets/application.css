@@ -13,12 +13,24 @@
 
  *= require_tree .
  */
- ul { font-family: "Roboto"; font-size: 26px; font-weight: 200; }
- li { font-family: "Roboto"; font-size: 26px; font-weight: 200; }
- .row .column h1 { font-family: "Roboto"; font-size: 34px; font-weight: 200; }
- .row .column h2 { font-family: "Roboto"; font-size: 32px; font-weight: 200; }
- .row .column h3 { font-family: "Roboto"; font-size: 30px; font-weight: 200; }
- .row .column h4 { font-family: "Roboto"; font-size: 28px; font-weight: 200; }
+ ul { font-family: "Roboto"; font-size: 22px; font-weight: 200; }
+ li { font-family: "Roboto"; font-size: 22px; font-weight: 200; }
+ .column h1 { font-family: "Montserrat"; font-size: 36px; font-weight: 200; }
+ .column h2 { font-family: "Montserrat"; font-size: 24px; font-weight: 100; }
+ .column h3 { font-family: "Montserrat"; font-size: 30px; font-weight: 200; }
+ .column h4 { font-family: "Montserrat"; font-size: 28px; font-weight: 200; }
+
+.vote *{
+  display: inline;
+}
+
+#buttons-review *{
+  display: inline;
+}
+
+#buttons-bar *{
+  display: inline;
+}
 
  .container-1 {
    width: auto;

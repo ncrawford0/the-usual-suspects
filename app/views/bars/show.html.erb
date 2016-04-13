@@ -1,28 +1,40 @@
 <div class="container">
   <div class="column">
     <h1><%= @bar.name %></h1>
-    <%= @bar.description %></br>
+    <h2><%= @bar.description %></h2>
+
+    <% if @bar.user == current_user %>
+    <div id="buttons-bar">
+      <%= button_to "Edit Bar", edit_bar_path(@bar), method: :get %>
+      <% end %>
+    </div>
 
     <% if @reviews.any? %>
-      <h4><%= @bar.name %>'s Reviews</h4>
+      <h4>Reviews of <%= @bar.name %></h4>
     <% end %>
 
     <% @reviews.each do |review| %>
+      <div id="vote-<%= review.id %>" class="vote">
+        <li id="upvote-<%= review.id %>"><%= button_to "Upvote", upvote_review_votes_path(review), method: :post %></li>
+          <li id="vote-total-<%= review.id %>"><%= @vote_total[review.id] %></li>
+        <li id="downvote-<%= review.id %>"><%= button_to "Downvote", downvote_review_votes_path(review), method: :post %></li>
+      </div>
+
       <ul>
         Title: <%= review.title %>
         <li>Review: <%= review.body %></li>
         <li>Rating: <%= review.rating %></li>
+
         <% if review.user == current_user %>
+        <div id="buttons-review">
           <li><%= button_to "Edit", edit_bar_review_path(@bar, review), method: :get %></li>
           <li><%= button_to "Delete", bar_review_path(@bar, review), method: :delete, data: { confirm: "Are you sure?" } %></li>
-        <% end %>
-        <li><%= button_to "Upvote", upvote_review_votes_path(review), method: :post %></li>
-        <li><%= @vote_total[review.id] %></li>
-        <li><%= button_to "Downvote", downvote_review_votes_path(review), method: :post %></li>
+          <% end %>
+        </div>
       </ul>
     <% end %>
 
-    <h1>Add Review</h1>
+    <h4>Add Review</h4>
     <%= form_for [@bar, @review] do |f| %>
       <div class="field">
         <%= f.label :title %></br>
@@ -42,10 +54,6 @@
       <div class="actions">
         <%= f.submit %></br>
       </div>
-    <% end %>
-
-    <% if @bar.user == current_user %>
-      <%= button_to "Edit Bar", edit_bar_path(@bar), method: :get %>
     <% end %>
     <%= button_to "View All Bars", bars_path, method: :get %>
   </div>

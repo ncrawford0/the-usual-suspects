@@ -19,9 +19,7 @@ feature "user deletes an existing bar" do
   scenario "unauthenticated user deletes bar" do
     visit bars_path
     click_link bar.name
-    click_button "Edit Bar"
 
-    expect(page).to have_content("Log in")
-    expect(page).to have_content("You need to sign in or sign up before continuing")
+    expect(page).to have_no_content("Edit Bar")
   end
 end

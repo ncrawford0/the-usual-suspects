@@ -5,17 +5,17 @@
 
     <%= form_for(@bar) do |f| %>
     <%= f.label :name %>
-  </br>
-  <%= f.text_field :name %>
-</br>
-<%= f.label :description %>
-</br>
-<%= f.text_field :description %>
-</br>
-<%= f.submit "Update Bar" %>
-<% end %>
+    </br>
+    <%= f.text_field :name %>
+    </br>
+    <%= f.label :description %>
+    </br>
+    <%= f.text_field :description %>
+    </br>
+    <%= f.submit "Update Bar" %>
+    <% end %>
 
-<%= button_to "Delete Bar", bar_path(@bar), method: :delete, data: { confirm: "Are you sure?" } %>
-<%= button_to 'Cancel', bars_path, method: :get %>
-</div>
+    <%= button_to "Delete Bar", bar_path(@bar), method: :delete, data: { confirm: "Are you sure?" } %>
+    <%= button_to 'Cancel', bars_path, method: :get %>
+  </div>
 </div>

@@ -38,7 +38,7 @@ feature "user edits a review" do
     expect(page).not_to have_content review1.rating
   end
 
-  scenario "submits form without title, body, or rating" do
+  scenario "authenticated user submits form without title, body, or rating" do
     visit bars_path
     page.find(".dropbtn").click
     click_link "Sign in"
@@ -61,7 +61,7 @@ feature "user edits a review" do
     expect(page).to have_content("Rating is not included in the list")
   end
 
-  scenario "user edits another user's review" do
+  scenario "authenticated user edits another user's review" do
     visit bars_path
     page.find(".dropbtn").click
     click_link "Sign in"
@@ -69,9 +69,7 @@ feature "user edits a review" do
     fill_in "Password", with: user2.password
     click_button "Log in"
     click_link bar.name
-    click_button "Delete"
 
-    expect(page).to have_content bar.name
-    expect(page).to have_content("You do not have permission to make this change")
+    expect(page).to have_no_selector(:button, "Edit")
   end
 end
