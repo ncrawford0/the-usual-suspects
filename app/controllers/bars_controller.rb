@@ -3,7 +3,11 @@ class BarsController < ApplicationController
   before_action :require_access, only: [:edit, :destroy]
 
   def index
-    @bars = Bar.order(:name).page(params[:page]).per(5)
+    if params[:search]
+      @bars = Bar.search(params[:search]).page(params[:page]).per(5)
+    else
+      @bars = Bar.order(:name).page(params[:page]).per(5)
+    end
   end
 
   def show

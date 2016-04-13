@@ -5,8 +5,12 @@
         <h1>All Bars</h1>
 
         <ul>
-          <% @bars.each do |bar| %>
-          <li><%= link_to bar.name, bar_path(bar) %></li>
+          <% if @bars.length < 1 %>
+            <li>"No results match your criteria"</li>
+          <% else %>
+            <% @bars.each do |bar| %>
+              <li><%= link_to bar.name, bar_path(bar) %></li>
+            <% end %>
           <% end %>
         </ul>
 

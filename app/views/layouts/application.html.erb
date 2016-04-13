@@ -46,7 +46,11 @@
           <span class="icon">
             <i class="fa fa-search"></i>
           </span>
-          <input type="search" id="search" placeholder="Search..."/>
+          <!-- <input type="search" id="search" placeholder="Search..."/> -->
+<%= form_tag(bars_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Bars" %>
+<%= submit_tag "Search" %>
+<% end %>
         </div>
       </div>
 
