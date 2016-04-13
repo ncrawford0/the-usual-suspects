@@ -30,5 +30,4 @@ class AdminsController < ApplicationController
     flash[:notice] = "Admin Removed"
     redirect_to admins_path
   end
-
 end

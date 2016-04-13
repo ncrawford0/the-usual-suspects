@@ -2,7 +2,6 @@ class BarsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :destroy]
   before_action :require_access, only: [:edit, :destroy]
 
-
   def index
     if params[:search]
       @bars = Bar.search(params[:search]).page(params[:page]).per(5)
