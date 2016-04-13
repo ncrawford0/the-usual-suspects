@@ -10,7 +10,8 @@ feature "profile photo" do
     fill_in "Password confirmation", with: "12345678"
     attach_file :user_avatar, "#{Rails.root}/spec/support/images/avatar.jpg"
     click_button "Sign up"
-    click_button "Edit profile"
+    page.find(".dropbtn").click
+    click_link "Edit profile"
 
 
     expect(page).to have_content("Edit User")
