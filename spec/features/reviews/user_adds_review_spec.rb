@@ -1,28 +1,27 @@
 require "rails_helper"
 
 feature "user adds a review to bar" do
-  let!(:new_user) { User.create(email: "mckelvey.matt@gmail.com", password: "12345678") }
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:bar) { FactoryGirl.create(:bar, user: user) }
+  let(:review) { FactoryGirl.create(:review, user: user, bar: bar) }
 
   before(:each) do
     visit user_session_path
-    fill_in "Email", with: "mckelvey.matt@gmail.com"
-    fill_in "Password", with: "12345678"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
     click_button "Log in"
-    click_button "Add New Bar"
-    fill_in "Name", with: "Beantown Pub"
-    fill_in "Description", with: "After hours cocktail bar with pool."
-    click_button "Add Bar"
+    click_link bar.name
   end
 
   scenario "authenticated user successfully creates a new review" do
-    fill_in "Title", with: "Best bar I've been to"
-    fill_in "Review", with: "We were visiting and had a good time"
-    fill_in "Rating", with: 5
+    fill_in "Title", with: review.title
+    fill_in "Review", with: review.body
+    fill_in "Rating", with: review.rating
     click_button "Create Review"
 
-    expect(page).to have_content("Review added")
-    expect(page).to have_content("Best bar I've been to")
-    expect(page).to have_content("5")
+    expect(page).to have_content review.title
+    expect(page).to have_content review.body
+    expect(page).to have_content review.rating
   end
 
   scenario "authenticated user submits form without title, body, or rating" do
@@ -39,9 +38,10 @@ feature "user adds a review to bar" do
   end
 
   scenario "unauthenticated user adds review" do
-    click_button "Sign out"
-    click_link "Beantown Pub"
-    click_button "Edit Bar"
+    page.find(".dropbtn").click
+    click_link "Sign out"
+    click_link bar.name
+    click_button "Create Review"
 
     expect(page).to have_content("Log in")
     expect(page).to have_content("You need to sign in or sign up before continuing")
