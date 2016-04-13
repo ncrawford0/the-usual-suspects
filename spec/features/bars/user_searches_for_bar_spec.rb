@@ -5,9 +5,9 @@ feature "user searches for a bar" do
   let!(:bar1) { FactoryGirl.create(:bar, user: user1) }
   let!(:bar2) do
     FactoryGirl.create(:bar,
-    name: "The Yard House",
-    description: "A brewhouse near fenway where you can buy yards of beer.",
-    user: user1)
+      name: "The Yard House",
+      description: "A brewhouse near fenway where you can buy yards of beer.",
+      user: user1)
   end
 
   before(:each) do
