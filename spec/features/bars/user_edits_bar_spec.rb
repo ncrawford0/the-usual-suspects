@@ -40,7 +40,7 @@ feature "user edits an existing bar" do
   end
 
   scenario "unauthenticated user edits bar" do
-    page.find('.dropbtn').click
+    page.find(".dropbtn").click
     click_link "Sign out"
     click_link bar1.name
     click_button "Edit Bar"
@@ -50,9 +50,9 @@ feature "user edits an existing bar" do
   end
 
   scenario "user edits another user's bar" do
-    page.find('.dropbtn').click
+    page.find(".dropbtn").click
     click_link "Sign out"
-    page.find('.dropbtn').click
+    page.find(".dropbtn").click
     click_link "Sign in"
     fill_in "Email", with: user2.email
     fill_in "Password", with: user2.password

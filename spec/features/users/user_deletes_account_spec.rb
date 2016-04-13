@@ -9,7 +9,7 @@ feature "user deletes account" do
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
     click_button "Log in"
-    page.find('.dropbtn').click
+    page.find(".dropbtn").click
     click_link "Edit profile"
     click_button "Cancel my account"
 

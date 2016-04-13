@@ -32,7 +32,7 @@ feature "user adds a bar" do
   end
 
   scenario "unauthenticated user submits form" do
-    page.find('.dropbtn').click
+    page.find(".dropbtn").click
     click_link "Sign out"
     click_button "Add New Bar"
 

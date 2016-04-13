@@ -9,7 +9,7 @@ feature "user updates their user details" do
     fill_in "Email", with: user1.email
     fill_in "Password", with: user1.password
     click_button "Log in"
-    page.find('.dropbtn').click
+    page.find(".dropbtn").click
     click_link "Edit profile"
     fill_in "Email", with: "janisdoe@gmail.com"
     fill_in "Password", with: "87654321"
@@ -25,7 +25,7 @@ feature "user updates their user details" do
     fill_in "Email", with: user1.email
     fill_in "Password", with: user1.password
     click_button "Log in"
-    page.find('.dropbtn').click
+    page.find(".dropbtn").click
     click_link "Edit profile"
     fill_in "Email", with: ""
     fill_in "Current password", with: ""

@@ -38,7 +38,7 @@ feature "user adds a review to bar" do
   end
 
   scenario "unauthenticated user adds review" do
-    page.find('.dropbtn').click
+    page.find(".dropbtn").click
     click_link "Sign out"
     click_link bar.name
     click_button "Create Review"
