@@ -11,7 +11,7 @@ class AdminsController < ApplicationController
     @user = User.find(params[:user_id])
     @admin = Admin.new(
       email: @user.email,
-      password: 'placeholder',
+      password: "placeholder",
       encrypted_password: @user.encrypted_password
     )
     if @admin.save
@@ -25,7 +25,7 @@ class AdminsController < ApplicationController
   end
 
   def destroy
-    @admin = Admin.find(params['id'])
+    @admin = Admin.find(params["id"])
     @admin.delete
     flash[:notice] = "Admin Removed"
     redirect_to admins_path
