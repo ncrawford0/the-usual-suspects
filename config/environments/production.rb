@@ -77,10 +77,8 @@ Bars::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  c  config.action_mailer.delivery_method  = :mailgun
-  config.action_mailer.mailgun_settings = {
-    api_host: "samples.mailgun.org",
-    api_key:  "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"
-  }
-
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = { api_host: "samples.mailgun.org",
+                                            api_key:  "key-3ax6xnjp29jd6fds4gc373sgvjxteol0"
+                                          }
 end
