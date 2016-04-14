@@ -17,8 +17,7 @@ feature "user adds a bar" do
   end
 
   scenario "user sees pagination of bar list" do
-
-    expect(page).to have_selector('li', count: 5)
+    expect(page).to have_selector("li", count: 5)
   end
 
   scenario "user sees second page of pagination" do

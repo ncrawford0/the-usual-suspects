@@ -9,8 +9,8 @@ Bars::Application.routes.draw do
   resources :reviews do
     resources :votes do
       collection do
-        post 'upvote'
-        post 'downvote'
+        post "upvote"
+        post "downvote"
       end
     end
   end
