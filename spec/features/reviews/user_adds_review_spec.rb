@@ -22,6 +22,7 @@ feature "user adds a review to bar" do
     expect(page).to have_content review.title
     expect(page).to have_content review.body
     expect(page).to have_content review.rating
+    expect(ActionMailer::Base.deliveries.count).to eq(1)
   end
 
   scenario "authenticated user submits form without title, body, or rating" do
