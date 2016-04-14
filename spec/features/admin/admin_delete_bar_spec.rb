@@ -7,7 +7,7 @@ feature "admin deletes a review" do
   let!(:new_review) { Review.create(title: "good", body: "good", rating: 5, bar_id: new_bar.id, user_id: user1.id) }
 
   scenario "admin signs in and deletes a review" do
-    visit "/admins/sign_in"
+    visit new_admin_session_path
     fill_in "Email", with: "abcd@gmail.com"
     fill_in "Password", with: "12345678"
     click_button "Log in"

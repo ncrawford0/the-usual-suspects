@@ -44,10 +44,10 @@
           <span class="icon">
             <i class="fa fa-search"></i>
           </span>
-<%= form_tag(bars_path, :method => "get", id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Search..." %>
-<%= submit_tag "Search" %>
-<% end %>
+          <%= form_tag(bars_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search..." %>
+            <%= submit_tag "Search" %>
+          <% end %>
         </div>
       </div>
 

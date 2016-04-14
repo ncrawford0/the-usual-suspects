@@ -5,7 +5,7 @@ feature "admin upgrades a user" do
   let!(:user1) { User.create(email: "abcd1@gmail.com", password: "12345678") }
 
   scenario "user is successfully upgraded" do
-    visit "/admins/sign_in"
+    visit new_admin_session_path
     fill_in "Email", with: "abcd@gmail.com"
     fill_in "Password", with: "12345678"
     click_button "Log in"
