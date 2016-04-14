@@ -31,6 +31,20 @@ input {
   background-color: #FFCC99;
 }
 
+#bar {
+  background-color: #EFEFEF;
+  padding: 20px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+#review {
+  background-color: #EFEFEF;
+  padding: 20px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
 .actions *{
   display: inline;
 }

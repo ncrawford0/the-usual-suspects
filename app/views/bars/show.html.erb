@@ -1,7 +1,19 @@
 <div class="row">
   <div class="column">
-      <h1><%= @bar.name %></h1>
-      <h2><%= @bar.description %></h2>
+  </br>
+    <div id="bar">
+        <h1><%= @bar.name %></h1>
+        <li>
+        <p1>Average Rating:</p1>
+        <% rating_total = 0 %>
+        <% @reviews.each do |review| %>
+        <% rating_total += review.rating %>
+        <% end %>
+        <% average_rating = rating_total.to_f / @reviews.length %>
+        <%= average_rating.round(1) %>
+        </li>
+        <h2><%= @bar.description %></h2>
+    </div>
 
       <% if @bar.user == current_user %>
       <div id="buttons-bar">
@@ -9,12 +21,15 @@
       </div>
       <% end %>
 
-
-      <% if @reviews.any? %>
-        <h4>Reviews of <%= @bar.name %></h4>
-      <% end %>
+        <% if @reviews.any? %>
+      </br>
+         <h4>Reviews of <%= @bar.name %></h4>
+        <% end %>
 
       <% @reviews.each do |review| %>
+      <div id="review">
+
+
         <div id="vote-<%= review.id %>" class="vote">
           <li href ="<%=upvote_review_votes_path(review)%>" class="upvote" id="<%= review.id %>"><%= button_to "Upvote", upvote_review_votes_path(review), method: :post %></li>
             <li class="vote-total" id="<%= review.id %>"><%= @vote_total[review.id] %></li>
@@ -25,8 +40,7 @@
           <p1>Title:</p1> <%= review.title %>
           <li><p1>Review:</p1> <%= review.body %></li>
           <li id="rating-<%= review.id %>"><p1>Rating:</p1> <%= review.rating %></li>
-          <li><p1>Created by:</p1> <%= @bar.user.email %>
-
+          <li><p1>Created by:</p1> <%= @bar.user.email %></li>
 
           <% if review.user == current_user %>
           <div id="buttons-review">
@@ -35,10 +49,12 @@
           </div>
           <% end %>
         </ul>
+      </div>
+    </br>
       <% end %>
-      <div="column">
+
       <h4>Add Review for <%= @bar.name %></h4>
-      <%= form_for [@bar, @review] do |f| %>
+        <%= form_for [@bar, @review] do |f| %>
         <div class="field">
           <%= f.label :title, "Title:" %>
           <%= f.text_field :title %>
@@ -59,7 +75,7 @@
           <% end %>
           <%= button_to "View All Bars", bars_path, method: :get %>
         </div>
-    </div>
+
   </div>
 </div>
 <%= javascript_include_tag "application" %>

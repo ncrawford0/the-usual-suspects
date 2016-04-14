@@ -9,7 +9,7 @@ class BarsController < ApplicationController
   def show
     @bar = Bar.find(params[:id])
     @review = Review.new
-    @reviews = @bar.reviews.order(created_at: :asc)
+    @reviews = @bar.reviews.order(created_at: :desc)
     @vote_total = Vote.group(:review_id).sum(:count)
   end
 
