@@ -26,10 +26,9 @@ feature "user deletes a review" do
     expect(page).to have_content("Review has been deleted")
     expect(page).not_to have_content review1.title
     expect(page).not_to have_content review1.body
-    expect(page).not_to have_content review1.rating
     expect(page).not_to have_content review2.title
     expect(page).not_to have_content review2.body
-    expect(page).not_to have_content review2.rating
+    expect(page).not_to have_css("li#rating-#{review2.id}")
   end
 
   scenario "authenticated user attempts to delete another user's review" do

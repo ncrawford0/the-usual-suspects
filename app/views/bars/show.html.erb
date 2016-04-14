@@ -1,60 +1,62 @@
-<div class="container">
+<div class="row">
   <div class="column">
-    <h1><%= @bar.name %></h1>
-    <h2><%= @bar.description %></h2>
+      <h1><%= @bar.name %></h1>
+      <h2><%= @bar.description %></h2>
 
-    <% if @bar.user == current_user %>
-    <div id="buttons-bar">
-      <%= button_to "Edit Bar", edit_bar_path(@bar), method: :get %>
+      <% if @bar.user == current_user %>
+      <div id="buttons-bar">
+        <%= button_to "Edit Bar", edit_bar_path(@bar), method: :get %>
+      </div>
       <% end %>
-    </div>
 
-    <% if @reviews.any? %>
-      <h4>Reviews of <%= @bar.name %></h4>
-    <% end %>
 
-    <% @reviews.each do |review| %>
-      <div id="vote-<%= review.id %>" class="vote">
-        <li id="upvote-<%= review.id %>"><%= button_to "Upvote", upvote_review_votes_path(review), method: :post %></li>
-          <li id="vote-total-<%= review.id %>"><%= @vote_total[review.id] %></li>
-        <li id="downvote-<%= review.id %>"><%= button_to "Downvote", downvote_review_votes_path(review), method: :post %></li>
-      </div>
+      <% if @reviews.any? %>
+        <h4>Reviews of <%= @bar.name %></h4>
+      <% end %>
 
-      <ul>
-        Title: <%= review.title %>
-        <li>Review: <%= review.body %></li>
-        <li>Rating: <%= review.rating %></li>
-
-        <% if review.user == current_user %>
-        <div id="buttons-review">
-          <li><%= button_to "Edit", edit_bar_review_path(@bar, review), method: :get %></li>
-          <li><%= button_to "Delete", bar_review_path(@bar, review), method: :delete, data: { confirm: "Are you sure?" } %></li>
-          <% end %>
+      <% @reviews.each do |review| %>
+        <div id="vote-<%= review.id %>" class="vote">
+          <li id="upvote-<%= review.id %>"><%= button_to "Upvote", upvote_review_votes_path(review), method: :post %></li>
+            <li id="vote-total-<%= review.id %>"><%= @vote_total[review.id] %></li>
+          <li id="downvote-<%= review.id %>"><%= button_to "Downvote", downvote_review_votes_path(review), method: :post %></li>
         </div>
-      </ul>
-    <% end %>
 
-    <h4>Add Review</h4>
-    <%= form_for [@bar, @review] do |f| %>
-      <div class="field">
-        <%= f.label :title %></br>
-        <%= f.text_field :title %>
-      </div>
+        <ul>
+          <p1>Title:</p1> <%= review.title %>
+          <li><p1>Review:</p1> <%= review.body %></li>
+          <li id="rating-<%= review.id %>"><p1>Rating:</p1> <%= review.rating %></li>
 
-      <div class="field">
-        <%= f.label :body, "Review" %></br>
-        <%= f.text_field :body %>
-      </div>
+          <% if review.user == current_user %>
+          <div id="buttons-review">
+            <li><%= button_to "Edit", edit_bar_review_path(@bar, review), method: :get %></li>
+            <li><%= button_to "Delete", bar_review_path(@bar, review), method: :delete, data: { confirm: "Are you sure?" } %></li>
+          </div>
+          <% end %>
+        </ul>
+      <% end %>
+      <div="column">
+      <h4>Add Review for <%= @bar.name %></h4>
+      <%= form_for [@bar, @review] do |f| %>
+        <div class="field">
+          <%= f.label :title, "Title:" %>
+          <%= f.text_field :title %>
+        </div>
 
-      <div class="field">
-        <%= f.label :rating %></br>
-        <%= f.text_field :rating %>
-      </div>
+        <div class="field">
+          <%= f.label :body, "Review:" %>
+          <%= f.text_area :body %>
+        </div>
 
-      <div class="actions">
-        <%= f.submit %></br>
-      </div>
-    <% end %>
-    <%= button_to "View All Bars", bars_path, method: :get %>
+        <div class="field">
+          <%= f.label :rating, "Rating:" %>
+          <%= f.select :rating, options_for_select(1..5) %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit %>
+          <% end %>
+          <%= button_to "View All Bars", bars_path, method: :get %>
+        </div>
+    </div>
   </div>
 </div>

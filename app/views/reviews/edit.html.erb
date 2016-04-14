@@ -13,8 +13,8 @@
       </div>
 
       <div class="field">
-        <%= f.label :rating %></br>
-        <%= f.text_field :rating %>
+        <%= f.label :rating, "Rating" %>
+        <%= f.select :rating, options_for_select(1..5) %>
       </div>
 
       <div class="actions">

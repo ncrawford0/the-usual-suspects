@@ -1,18 +1,16 @@
 <div class="content-splash">
-  <div class="container">
-    <div class="column">
-        <h1>All Bars</h1>
+  <div class="row">
+    <h1>All Bars</h1>
 
-        <ul>
-          <% @bars.each do |bar| %>
-          <li><%= link_to bar.name, bar_path(bar) %></li>
-          <% end %>
-        </ul>
+    <ul id="bar-show">
+      <% @bars.each do |bar| %>
+      <li id="bar-<%= bar.id %>"><%= link_to bar.name, bar_path(bar) %></li>
+      <% end %>
+    </ul>
 
-        <%= button_to "Add New Bar", new_bar_path, method: :get %>
-    </div>
+    <%= button_to "Add New Bar", new_bar_path, method: :get %>
   </div>
-</div>
-<div class="pagination">
-<%= paginate @bars %>
+  <div id="pagination">
+  <%= paginate @bars %>
+  </div>
 </div>

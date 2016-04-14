@@ -16,7 +16,7 @@ feature "user adds a review to bar" do
   scenario "authenticated user successfully creates a new review" do
     fill_in "Title", with: review.title
     fill_in "Review", with: review.body
-    fill_in "Rating", with: review.rating
+    select "1", from: "Rating"
     click_button "Create Review"
 
     expect(page).to have_content review.title
@@ -24,17 +24,13 @@ feature "user adds a review to bar" do
     expect(page).to have_content review.rating
   end
 
-  scenario "authenticated user submits form without title, body, or rating" do
+  scenario "authenticated user submits form without title, or body" do
     fill_in "Title", with: ""
-    fill_in "Review", with: ""
-    fill_in "Rating", with: ""
+    select "1", from: "Rating"
     click_button "Create Review"
 
-    expect(page).to have_content("Title can't be blank.")
-    expect(page).to have_content("Body can't be blank.")
-    expect(page).to have_content("Rating can't be blank.")
-    expect(page).to have_content("Rating is not a number.")
-    expect(page).to have_content("Rating is not included in the list")
+    expect(page).to have_content("Title can't be blank")
+    expect(page).to have_content("Body can't be blank")
   end
 
   scenario "unauthenticated user adds review" do
