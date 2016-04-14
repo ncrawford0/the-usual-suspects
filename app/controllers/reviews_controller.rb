@@ -34,6 +34,7 @@ class ReviewsController < ApplicationController
     @review.bar = @bar
     @review.user = @current_user
     @reviews = @bar.reviews.order(created_at: :asc)
+    @vote_total = Vote.group(:review_id).sum(:count)
 
     if @review.save
       flash[:notice] = "Review added"

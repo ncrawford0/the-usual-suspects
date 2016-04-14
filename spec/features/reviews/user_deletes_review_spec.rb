@@ -13,20 +13,6 @@ feature "user deletes a review" do
     rating: 1)
   end
 
-  scenario "user attempts to edit another user's review" do
-    visit bars_path
-    page.find(".dropbtn").click
-    click_link "Sign in"
-    fill_in "Email", with: user2.email
-    fill_in "Password", with: user2.password
-    click_button "Log in"
-    click_link bar.name
-    click_button "Edit"
-
-    expect(page).to have_content bar.name
-    expect(page).to have_content("You do not have permission to make this change")
-  end
-
   scenario "authenticated user successfully deletes a review" do
     visit bars_path
     page.find(".dropbtn").click
@@ -39,9 +25,20 @@ feature "user deletes a review" do
 
     expect(page).to have_content("#{review1.title} has been deleted")
     expect(page).not_to have_content review1.body
-    expect(page).not_to have_content review1.rating
     expect(page).not_to have_content review2.title
     expect(page).not_to have_content review2.body
-    expect(page).not_to have_content review2.rating
+    expect(page).not_to have_css("li#rating-#{review2.id}")
+  end
+
+  scenario "authenticated user attempts to delete another user's review" do
+    visit bars_path
+    page.find(".dropbtn").click
+    click_link "Sign in"
+    fill_in "Email", with: user2.email
+    fill_in "Password", with: user2.password
+    click_button "Log in"
+    click_link bar.name
+
+    expect(page).to have_no_content("Delete")
   end
 end

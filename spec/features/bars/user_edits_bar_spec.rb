@@ -43,13 +43,11 @@ feature "user edits an existing bar" do
     page.find(".dropbtn").click
     click_link "Sign out"
     click_link bar1.name
-    click_button "Edit Bar"
 
-    expect(page).to have_content("Log in")
-    expect(page).to have_content("You need to sign in or sign up before continuing")
+    expect(page).to have_no_content("Edit Bar")
   end
 
-  scenario "user edits another user's bar" do
+  scenario "authenticated user edits another user's bar" do
     page.find(".dropbtn").click
     click_link "Sign out"
     page.find(".dropbtn").click
@@ -58,9 +56,7 @@ feature "user edits an existing bar" do
     fill_in "Password", with: user2.password
     click_button "Log in"
     click_link bar1.name
-    click_button "Edit Bar"
 
-    expect(page).to have_content(bar1.name)
-    expect(page).to have_content("You do not have permission to make this change")
+    expect(page).to have_no_content("Edit Bar")
   end
 end

@@ -26,19 +26,18 @@ feature "user edits a review" do
 
     fill_in "Title", with: review2.title
     fill_in "Review", with: review2.body
-    fill_in "Rating", with: review2.rating
+    select "3", from: "Rating"
     click_button "Save Changes"
 
     expect(page).to have_content review2.title
     expect(page).to have_content review2.body
-    expect(page).to have_content review2.rating
-
+    expect(page).to have_content("Rating: #{review2.rating}")
     expect(page).not_to have_content review1.title
     expect(page).not_to have_content review1.body
-    expect(page).not_to have_content review1.rating
+    expect(page).not_to have_content("Rating: #{review1.rating}")
   end
 
-  scenario "submits form without title, body, or rating" do
+  scenario "authenticated user submits form without title or body" do
     visit bars_path
     page.find(".dropbtn").click
     click_link "Sign in"
@@ -50,18 +49,14 @@ feature "user edits a review" do
 
     fill_in "Title", with: ""
     fill_in "Review", with: ""
-    fill_in "Rating", with: ""
     click_button "Save Changes"
 
     expect(page).to have_content("Edit Review")
-    expect(page).to have_content("Title can't be blank.")
-    expect(page).to have_content("Body can't be blank.")
-    expect(page).to have_content("Rating can't be blank.")
-    expect(page).to have_content("Rating is not a number.")
-    expect(page).to have_content("Rating is not included in the list")
+    expect(page).to have_content("Title can't be blank")
+    expect(page).to have_content("Body can't be blank")
   end
 
-  scenario "user edits another user's review" do
+  scenario "authenticated user edits another user's review" do
     visit bars_path
     page.find(".dropbtn").click
     click_link "Sign in"
@@ -69,9 +64,7 @@ feature "user edits a review" do
     fill_in "Password", with: user2.password
     click_button "Log in"
     click_link bar.name
-    click_button "Delete"
 
-    expect(page).to have_content bar.name
-    expect(page).to have_content("You do not have permission to make this change")
+    expect(page).to have_no_selector(:button, "Edit")
   end
 end
