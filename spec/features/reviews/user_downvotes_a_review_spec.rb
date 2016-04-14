@@ -16,25 +16,25 @@ feature "user downvotes a review" do
   end
 
   scenario "authenticated user successfully downvotes a review" do
-    within(:css, "li#downvote-#{review.id}") do
+    within(:css, "li.downvote##{review.id}") do
       click_button "Downvote"
     end
 
-    within(:css, "li#vote-total-#{review.id}") do
+    within(:css, "li.vote-total##{review.id}") do
       expect(page).to have_content("1")
     end
   end
 
   scenario "authenticated user cancels their downvote" do
-    within(:css, "li#downvote-#{review.id}") do
+    within(:css, "li.downvote##{review.id}") do
       click_button "Downvote"
     end
 
-    within(:css, "li#downvote-#{review.id}") do
+    within(:css, "li.downvote##{review.id}") do
       click_button "Downvote"
     end
 
-    within(:css, "li#vote-total-#{review.id}") do
+    within(:css, "li.vote-total##{review.id}") do
       expect(page).to have_content("0")
     end
   end
@@ -44,7 +44,7 @@ feature "user downvotes a review" do
     click_link "Sign out"
     click_link bar.name
 
-    within(:css, "li#downvote-#{review.id}") do
+    within(:css, "li.downvote##{review.id}") do
       click_button "Downvote"
     end
 

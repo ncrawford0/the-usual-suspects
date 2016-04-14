@@ -10,7 +10,10 @@ class VotesController < ApplicationController
     end
     @value.save
     @vote_total = Vote.group(:review_id).sum(:count)
-    redirect_to bar_path(@bar)
+    respond_to do |format|
+      format.json {render json: @vote_total[@review.id] }
+      format.html {redirect_to bar_path(@bar)}
+    end
   end
 
   def downvote
@@ -21,14 +24,17 @@ class VotesController < ApplicationController
     end
     @value.save
     @vote_total = Vote.group(:review_id).sum(:count)
-    redirect_to bar_path(@bar)
-  end
+    respond_to do |format|
+      format.json { render json: @vote_total[@review.id] }
+      format.html { redirect_to bar_path(@bar) }
+      end
+    end
 
-  private
+    private
 
-  def pre_vote
-    @review = Review.find(params[:review_id])
-    @value = Vote.find_or_initialize_by(review: @review, user: current_user)
-    @bar = @review.bar
+    def pre_vote
+      @review = Review.find(params[:review_id])
+      @value = Vote.find_or_initialize_by(review: @review, user: current_user)
+      @bar = @review.bar
+    end
   end
-end

@@ -16,15 +16,17 @@
 
       <% @reviews.each do |review| %>
         <div id="vote-<%= review.id %>" class="vote">
-          <li id="upvote-<%= review.id %>"><%= button_to "Upvote", upvote_review_votes_path(review), method: :post %></li>
-            <li id="vote-total-<%= review.id %>"><%= @vote_total[review.id] %></li>
-          <li id="downvote-<%= review.id %>"><%= button_to "Downvote", downvote_review_votes_path(review), method: :post %></li>
+          <li href ="<%=upvote_review_votes_path(review)%>" class="upvote" id="<%= review.id %>"><%= button_to "Upvote", upvote_review_votes_path(review), method: :post %></li>
+            <li class="vote-total" id="<%= review.id %>"><%= @vote_total[review.id] %></li>
+          <li href ="<%=downvote_review_votes_path(review)%>"class="downvote" id="<%= review.id %>"><%= button_to "Downvote", downvote_review_votes_path(review), method: :post %></li>
         </div>
 
         <ul>
           <p1>Title:</p1> <%= review.title %>
           <li><p1>Review:</p1> <%= review.body %></li>
           <li id="rating-<%= review.id %>"><p1>Rating:</p1> <%= review.rating %></li>
+          <li><p1>Created by:</p1> <%= @bar.user.email %>
+
 
           <% if review.user == current_user %>
           <div id="buttons-review">
@@ -60,3 +62,4 @@
     </div>
   </div>
 </div>
+<%= javascript_include_tag "application" %>

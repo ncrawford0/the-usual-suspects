@@ -21,7 +21,7 @@
  .column h3 { font-family: "Open sans"; color: #2A282B; font-size: 30px; font-weight: 200; }
  .column h4 { font-family: "Open sans"; color: #2A282B; font-size: 28px; font-weight: 600; }
 
-#bar-show { font-family: "Open sans"; color: #2A282B; font-size: 36px; font-weight: 200; !important;}
+#bar-show { font-family: "Open sans"; color: #2A282B; font-size: 36px; font-weight: 200; }
 
 .vote *{
   display: inline;

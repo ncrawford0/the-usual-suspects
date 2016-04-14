@@ -16,25 +16,25 @@ feature "user upvotes a review" do
   end
 
   scenario "authenticated user successfully upvotes a review" do
-    within(:css, "li#upvote-#{review.id}") do
+    within(:css, "li.upvote##{review.id}") do
       click_button "Upvote"
     end
 
-    within(:css, "li#vote-total-#{review.id}") do
+    within(:css, "li.vote-total##{review.id}") do
       expect(page).to have_content("1")
     end
   end
 
   scenario "authenticated user cancels their upvote" do
-    within(:css, "li#upvote-#{review.id}") do
+    within(:css, "li.upvote##{review.id}") do
       click_button "Upvote"
     end
 
-    within(:css, "li#upvote-#{review.id}") do
+    within(:css, "li.upvote##{review.id}") do
       click_button "Upvote"
     end
 
-    within(:css, "li#vote-total-#{review.id}") do
+    within(:css, "li.vote-total##{review.id}") do
       expect(page).to have_content("0")
     end
   end
@@ -44,7 +44,7 @@ feature "user upvotes a review" do
     click_link "Sign out"
     click_link bar.name
 
-    within(:css, "li#upvote-#{review.id}") do
+    within(:css, "li.upvote##{review.id}") do
       click_button "Upvote"
     end
 
