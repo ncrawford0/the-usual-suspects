@@ -6,7 +6,7 @@ class BarsController < ApplicationController
     if params[:search]
       @bars = Bar.search(params[:search]).page(params[:page]).per(5)
     else
-      @bars = Bar.order(:name).page(params[:page]).per(5)
+      @bars = Bar.all.order(:name).page(params[:page]).per(5)
     end
   end
 
