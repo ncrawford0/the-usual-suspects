@@ -13,7 +13,7 @@ feature "user deletes an existing bar" do
     click_button "Edit Bar"
     click_button "Delete Bar"
 
-    expect(page).to have_content("has been deleted.")
+    expect(page).to have_content("#{bar.name} has been deleted")
   end
 
   scenario "unauthenticated user deletes bar" do

@@ -1,4 +1,5 @@
 Bars::Application.routes.draw do
+  devise_for :admins
   devise_for :users, controllers: { sessions: "users/sessions" }
 
   root to: "bars#index"
@@ -14,4 +15,8 @@ Bars::Application.routes.draw do
       end
     end
   end
+
+  resources :admins, only: [:index, :create, :destroy]
+  get "make_admin", to: "admins#make_admin"
+  resources :users, only: [:index, :create, :destroy]
 end

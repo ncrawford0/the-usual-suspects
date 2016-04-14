@@ -1,0 +1,11 @@
+Hello <%= @bar.user.email %>,
+
+<%= @review.user.email %> has left a new review for <%= @bar.name %>.
+Title: <%= @review.title %>
+Rating: <%= @review.rating %>
+ <%= @review.body %>.
+
+You can view the comment at  <%= bar_path(@bar) %>.
+
+Sincerly,
+The BevBoston Team

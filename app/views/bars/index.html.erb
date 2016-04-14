@@ -1,14 +1,16 @@
 <div class="content-splash">
   <div class="row">
     <h1>All Bars</h1>
-
-    <ul id="bar-show">
-      <% @bars.each do |bar| %>
-      <li id="bar-<%= bar.id %>"><%= link_to bar.name, bar_path(bar) %></li>
-      <% end %>
-    </ul>
-
-    <%= button_to "Add New Bar", new_bar_path, method: :get %>
+      <ul id="bar-show">
+        <% if @bars.length < 1 %>
+          <li>"No results match your criteria"</li>
+        <% else %>
+          <% @bars.each do |bar| %>
+            <li><%= link_to bar.name, bar_path(bar) %></li>
+          <% end %>
+        <% end %>
+      </ul>
+      <%= button_to "Add New Bar", new_bar_path, method: :get %>
   </div>
   <div id="pagination">
   <%= paginate @bars %>
