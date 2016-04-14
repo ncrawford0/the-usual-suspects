@@ -1,4 +1,7 @@
 class Review < ActiveRecord::Base
+  include PgSearch
+  multisearchable against: [:title, :body]
+
   belongs_to :bar
   belongs_to :user
 

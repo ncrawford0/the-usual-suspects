@@ -26,10 +26,8 @@
   <body>
     <%= yield %>
   </body>
-
   <div class="header">
     <div class="outer">
-
       <div class="dropdown">
         <button class="dropbtn"><img src="../assets/user.png"></button>
         <div class="dropdown-content">
@@ -37,7 +35,7 @@
           <%= link_to "Sign in", new_user_session_path unless current_user %>
           <%= link_to "Edit profile", edit_user_registration_path, method: :get if current_user %>
           <%= link_to "Sign out", destroy_user_session_path, method: :get if current_user %>
-          <%= link_to "Admin Dash", new_user_registration_path, method: :get unless current_user %>
+          <%= link_to "Admin Dashboard", admins_path, method: :get if admin_signed_in? %>
         </div>
       </div>
       <a href="../bars"><img src="../assets/logo.png"></a>
@@ -46,7 +44,10 @@
           <span class="icon">
             <i class="fa fa-search"></i>
           </span>
-          <input type="search" id="search" placeholder="Search..."/>
+          <%= form_tag(bars_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search..." %>
+            <%= submit_tag "Search" %>
+          <% end %>
         </div>
       </div>
 

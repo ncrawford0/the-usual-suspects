@@ -1,0 +1,9 @@
+<h1>Users</h1>
+
+<% @users.each do |user| %>
+  <%= user.email %>
+    <div id='id-<%= user.id %>'>
+      <%= button_to "Delete", user, method: :delete %>
+      <%= link_to "Make Admin", make_admin_path(user_id: user.id) %>
+    </div>
+<% end %>

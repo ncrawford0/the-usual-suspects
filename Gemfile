@@ -18,6 +18,7 @@ gem 'dotenv'
 gem 'mailgun-ruby', require: 'mailgun'
 gem 'twitter'
 gem 'rails-mailgun', git: "git://github.com/code-mancers/rails-mailgun.git"
+gem 'pg_search'
 
 group :doc do
   gem 'sdoc', require: false
