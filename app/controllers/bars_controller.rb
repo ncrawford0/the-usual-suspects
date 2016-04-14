@@ -56,7 +56,16 @@ class BarsController < ApplicationController
   private
 
   def bar_params
-    params.require(:bar).permit(:name, :description, :user)
+    params.require(:bar).permit(
+    :name,
+    :description,
+    :user,
+    :street,
+    :city,
+    :state,
+    :zip,
+    :phone,
+    :website)
   end
 
   def require_access

@@ -1,5 +1,13 @@
 <h1><%= @bar.name %></h1>
 <%= @bar.description %></br>
+<%= @bar.street %></br>
+<%= @bar.city %></br>
+<%= @bar.state %></br>
+<%= @bar.zip %></br>
+<%= @bar.phone %></br>
+<% if @bar.website %>
+  <a href="https://<%= @bar.website%>" target="blank"><%= @bar.website%></a></br>
+<% end %>
 
 <% if @reviews.any? %>
  <h4><%= @bar.name %>'s Reviews</h4>

@@ -10,7 +10,7 @@ feature "user deletes a review" do
     user: user1, bar: bar,
     title: "Worst bar ever.",
     body: "My freinds and I had a horible time here.",
-    rating: 1)
+    rating: 3)
   end
 
   scenario "user attempts to edit another user's review" do

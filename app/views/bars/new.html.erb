@@ -7,6 +7,23 @@
   <%= f.label :description %>
   <%= f.text_area :description %>
   </br>
+  <%= f.label :street %>
+  <%= f.text_area :street %>
+  </br>
+  <%= f.label :city %>
+  <%= f.text_area :city, value: "Boston" %>
+  </br>
+  <%= f.label :state %>
+  <%= f.text_area :state, value: "MA" %>
+  </br>
+  <%= f.label :zip %>
+  <%= f.text_area :zip %>
+  </br>
+  <%= f.label :phone %>
+  <%= f.text_area :phone %>
+  </br>
+  <%= f.label :website, "Website (Optional)" %>
+  <%= f.text_area :website %>
   </br>
   <%= f.submit "Add Bar" %>
 <% end %>
