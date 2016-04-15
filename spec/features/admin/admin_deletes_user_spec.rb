@@ -12,7 +12,7 @@ feature "admin deletes a user" do
     fill_in "Password", with: "12345678"
     click_button "Log in"
     click_link "Admin Dashboard"
-    click_link "Edit Users"
+    click_button "Edit Users"
 
     find("#id-#{user1.id}").click_button("Delete")
     expect(page).to have_no_content(user1.email)

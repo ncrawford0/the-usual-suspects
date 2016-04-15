@@ -10,7 +10,7 @@ class Bar < ActiveRecord::Base
   validates :street, presence: true
   validates :city, presence: true
   validates :state, presence: true, length: { is: 2 }
-  validates :zip, presence: true
+  validates :zip, presence: true, numericality: true
   validates :phone, presence: true, length: { is: 10 }
 
   def self.search(input)
