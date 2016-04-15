@@ -1,0 +1,22 @@
+<h1>Admins</h1>
+
+<% @admins.each do |admin| %>
+  <%= admin.email %> - <%= button_to "Delete", admin, method: :delete %>
+<% end %>
+
+<%= link_to "Edit Users", users_path %>
+<BR><BR>
+<h2>Bars</h2><BR>
+<% @bars.each do |bar| %>
+  <%= bar.name%>
+  <%= button_to "Delete #{bar.name}", bar, method: :delete %>
+<% end %>
+
+<BR><BR>
+<h2>Reviews</h2><BR>
+<% @reviews.each do |review| %>
+  <% unless review.bar.nil? %>
+    <%= review.title %>
+    <%= button_to "Delete #{review.title}", bar_review_path(review.bar, review), method: :delete %>
+  <% end %>
+<% end %>

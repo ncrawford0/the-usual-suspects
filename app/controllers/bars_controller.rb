@@ -1,15 +1,20 @@
 class BarsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :destroy]
   before_action :require_access, only: [:edit, :destroy]
 
   def index
-    @bars = Bar.order(:name).page(params[:page]).per(5)
+    if params[:search]
+      @bars = Bar.search(params[:search]).page(params[:page]).per(5)
+    else
+      @bars = Bar.all.order(:name).page(params[:page]).per(5)
+    end
   end
 
   def show
     @bar = Bar.find(params[:id])
     @review = Review.new
-    @reviews = @bar.reviews.order(created_at: :asc)
+    @reviews = @bar.reviews.order(created_at: :desc)
+    @vote_total = Vote.group(:review_id).sum(:count)
   end
 
   def new
@@ -47,9 +52,15 @@ class BarsController < ApplicationController
   def destroy
     current_user
     @bar = Bar.find(params[:id])
-    if @bar.destroy!
-      flash[:notice] = "#{@bar.name} has been deleted."
+    if @bar.destroy && admin_signed_in?
+      flash[:alert] = "#{@bar.name} has been deleted"
+      redirect_to admins_path
+    elsif @bar.destroy
+      flash[:alert] = "#{@bar.name} has been deleted"
       redirect_to bars_path
+    else
+      flash[:alert] = "Error: Bar has not been deleted"
+      redirect_to bar_path(@bar)
     end
   end
 
@@ -69,6 +80,7 @@ class BarsController < ApplicationController
   end
 
   def require_access
+    unless admin_signed_in?
     @bar = Bar.find(params[:id])
     @user = @bar.user
     if @user != current_user
@@ -76,4 +88,5 @@ class BarsController < ApplicationController
       redirect_to bar_path(@bar)
     end
   end
+end
 end

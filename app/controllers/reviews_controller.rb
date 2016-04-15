@@ -1,7 +1,7 @@
 require "mailgun"
 
 class ReviewsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:destroy]
   before_action :require_access, only: [:edit, :destroy]
 
   def index
@@ -34,6 +34,7 @@ class ReviewsController < ApplicationController
     @review.bar = @bar
     @review.user = @current_user
     @reviews = @bar.reviews.order(created_at: :asc)
+    @vote_total = Vote.group(:review_id).sum(:count)
 
     if @review.save
       flash[:notice] = "Review added"
@@ -59,8 +60,11 @@ class ReviewsController < ApplicationController
     current_user
     @bar = Bar.find(params[:bar_id])
     @review = Review.find(params[:id])
-    if @review.destroy
-      flash[:alert] = "Review has been deleted"
+    if @review.destroy && admin_signed_in?
+      flash[:alert] = "#{@review.title} has been deleted"
+      redirect_to admins_path
+    elsif @review.destroy
+      flash[:alert] = "#{@review.title} has been deleted"
       redirect_to bar_path(@bar)
     else
       flash[:alert] = "Error: Review has not been deleted"
@@ -75,6 +79,7 @@ class ReviewsController < ApplicationController
   end
 
   def require_access
+    unless admin_signed_in?
     @bar = Bar.find(params[:bar_id])
     @review = Review.find(params[:id])
     @user = @review.user
@@ -82,5 +87,6 @@ class ReviewsController < ApplicationController
       flash[:error] = "You do not have permission to make this change."
       redirect_to bar_path(@bar)
     end
+  end
   end
 end

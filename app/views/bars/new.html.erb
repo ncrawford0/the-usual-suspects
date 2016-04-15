@@ -1,5 +1,6 @@
-<h1>Add Bar</h1>
-
+<div class="container">
+  <div class="column">
+    <h1>Add Bar</h1>
 <%= form_for @bar do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
@@ -27,5 +28,7 @@
   </br>
   <%= f.submit "Add Bar" %>
 <% end %>
-
-<%= button_to "View all bars", bars_path, method: :get %>
+        <%= button_to "View all bars", bars_path, method: :get %>
+      </div>
+  </div>
+</div>
