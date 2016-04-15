@@ -18,7 +18,7 @@
         <p1>Address: </p1><h2><%= @bar.street %>
         </br><%= @bar.state %>, <%= @bar.city %>, <%= @bar.zip %></h2>
         <p1>Phone: </p1><h2><%= @bar.phone %></h2>
-            <% if @bar.website %></h2>
+            <% unless @bar.website.empty? %></h2>
         <p1>Website: </p1><h2><a href="https://<%= @bar.website%>" target="blank"><%= @bar.website%></a></h2>
             <% end %>
     </div>
