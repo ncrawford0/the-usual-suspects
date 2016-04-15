@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(version: 20160414142209) do
     t.string  "name",        null: false
     t.string  "description", null: false
     t.integer "user_id",     null: false
+    t.string  "street",      null: false
+    t.string  "city",        null: false
+    t.string  "state",       null: false
+    t.integer "zip",         null: false
+    t.string  "phone",       null: false
+    t.string  "website"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|

@@ -1,15 +1,33 @@
 <div class="container">
   <div class="column">
     <h1>Add Bar</h1>
-      <%= form_for @bar do |f| %>
-      <%= f.label :name, "Name:" %>
-      <%= f.text_field :name %>
-
-      <%= f.label :description, "Description:" %>
-      <%= f.text_area :description %>
-      <div class="actions">
-        <%= f.submit "Add Bar" %>
-        <% end %>
+<%= form_for @bar do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  </br>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  </br>
+  <%= f.label :street %>
+  <%= f.text_area :street %>
+  </br>
+  <%= f.label :city %>
+  <%= f.text_area :city, value: "Boston" %>
+  </br>
+  <%= f.label :state %>
+  <%= f.text_area :state, value: "MA" %>
+  </br>
+  <%= f.label :zip %>
+  <%= f.text_area :zip %>
+  </br>
+  <%= f.label :phone %>
+  <%= f.text_area :phone %>
+  </br>
+  <%= f.label :website, "Website (Optional)" %>
+  <%= f.text_area :website %>
+  </br>
+  <%= f.submit "Add Bar" %>
+<% end %>
         <%= button_to "View all bars", bars_path, method: :get %>
       </div>
   </div>
