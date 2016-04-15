@@ -1,10 +1,10 @@
 require "rails_helper"
 
 feature "admin deletes a bar" do
-    let!(:admin) { Admin.create(email: "abcd@gmail.com", password: "12345678") }
-    let!(:user) { FactoryGirl.create(:user) }
-    let!(:bar) { FactoryGirl.create(:bar, user: user) }
-    let!(:review) { FactoryGirl.create(:review) }
+  let!(:admin) { Admin.create(email: "abcd@gmail.com", password: "12345678") }
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:bar) { FactoryGirl.create(:bar, user: user) }
+  let!(:review) { FactoryGirl.create(:review) }
 
   scenario "admin signs in and deletes bar" do
     visit new_admin_session_path
