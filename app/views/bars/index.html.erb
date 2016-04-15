@@ -1,16 +1,20 @@
 <div class="content-splash">
-  <div class="row">
-    <h1>All Bars</h1>
-      <ul id="bar-show">
-        <% if @bars.length < 1 %>
-          <li>"No results match your criteria"</li>
-        <% else %>
-          <% @bars.each do |bar| %>
-            <li><%= link_to bar.name, bar_path(bar) %></li>
+</br>
+    <div class="row">
+      <div id="review2">
+      <h5>All Bars</h5>
+        <ul id="bar-show">
+          <% if @bars.length < 1 %>
+            <li>"No results match your criteria"</li>
+          <% else %>
+            <% @bars.each do |bar| %>
+              <li><%= link_to bar.name, bar_path(bar) %></li>
+            <% end %>
           <% end %>
-        <% end %>
-      </ul>
-      <%= button_to "Add New Bar", new_bar_path, method: :get %>
+        </ul>
+        <%= button_to "Add New Bar", new_bar_path, method: :get %>
+      </div>
+    </div>
   </div>
 </div>
 <div id="pagination">

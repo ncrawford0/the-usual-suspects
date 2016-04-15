@@ -4,18 +4,37 @@
     <h1>Edit Bar</h1>
 
     <%= form_for(@bar) do |f| %>
-    <%= f.label :name %>
-    </br>
+    <%= f.label :name, "Name:" %>
     <%= f.text_field :name %>
-    </br>
-    <%= f.label :description %>
-    </br>
+
+    <%= f.label :description, "Description:" %>
     <%= f.text_field :description %>
-    </br>
+
+    <%= f.label :street, "Street:" %>
+    <%= f.text_area :street %>
+
+    <%= f.label :city, "City:" %>
+    <%= f.text_area :city, value: "Boston" %>
+
+    <%= f.label :state, "State:" %>
+    <%= f.text_area :state, value: "MA" %>
+
+    <%= f.label :zip, "Zip:" %>
+    <%= f.text_area :zip %>
+
+    <%= f.label :phone, "Phone:" %>
+    <%= f.text_area :phone %>
+
+    <%= f.label :website, "Website (Optional):" %>
+    <%= f.text_area :website %>
     <%= f.submit "Update Bar" %>
     <% end %>
-
-    <%= button_to "Delete Bar", bar_path(@bar), method: :delete, data: { confirm: "Are you sure?" } %>
-    <%= button_to 'Cancel', bars_path, method: :get %>
+    </br>
+    <div id="review">
+      <div class="actions">
+        <%= button_to "Delete Bar", bar_path(@bar), method: :delete, data: { confirm: "Are you sure?" } %>
+        <%= button_to 'Cancel', bars_path, method: :get %>
+      </div>
+    </div>
   </div>
 </div>

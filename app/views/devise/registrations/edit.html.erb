@@ -35,15 +35,14 @@
          <img src="<%=current_user.avatar%>" alt="avatar" height="42" width="42" class=avatar id="<%=current_user.id%>">
       </div>
 
-      <div class="field">
         <%= f.label :avatar %>
         <%= f.file_field :avatar %>
-      </div>
 
+        <%= f.submit "Update" %>
+        <% end %>
+      </br>
       <div id="review">
         <div class="actions">
-          <%= f.submit "Update" %>
-          <% end %>
           <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
         </div>
       </div>

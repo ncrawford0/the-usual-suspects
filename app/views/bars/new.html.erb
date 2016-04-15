@@ -7,6 +7,24 @@
 
       <%= f.label :description, "Description:" %>
       <%= f.text_area :description %>
+
+      <%= f.label :street, "Street:" %>
+      <%= f.text_area :street %>
+
+      <%= f.label :city, "City:" %>
+      <%= f.text_area :city, value: "Boston" %>
+
+      <%= f.label :state, "State:" %>
+      <%= f.text_area :state, value: "MA" %>
+
+      <%= f.label :zip, "Zip:" %>
+      <%= f.text_area :zip %>
+
+      <%= f.label :phone, "Phone:" %>
+      <%= f.text_area :phone %>
+
+      <%= f.label :website, "Website (Optional):" %>
+      <%= f.text_area :website %>
       <div id="review">
         <div class="actions">
           <%= f.submit "Add Bar" %>
@@ -14,5 +32,6 @@
           <%= button_to "View all bars", bars_path, method: :get %>
         </div>
       </div>
+
   </div>
 </div>

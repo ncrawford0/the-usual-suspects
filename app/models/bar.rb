@@ -7,6 +7,11 @@ class Bar < ActiveRecord::Base
 
   validates :name, presence: true
   validates :description, presence: true
+  validates :street, presence: true
+  validates :city, presence: true
+  validates :state, presence: true, length: { is: 2 }
+  validates :zip, presence: true
+  validates :phone, presence: true, length: { is: 10 }
 
   def self.search(input)
     bars = []

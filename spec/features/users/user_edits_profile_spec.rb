@@ -17,7 +17,7 @@ feature "user updates their user details" do
     fill_in "Current password", with: user1.password
     click_button "Update"
 
-    expect(page).to have_content("Your account has been updated successfully.")
+    expect(page).to have_content("All Bars")
   end
 
   scenario "submits form with email and current password blank" do
@@ -29,10 +29,8 @@ feature "user updates their user details" do
     click_link "Edit profile"
     fill_in "Email", with: ""
     fill_in "Current password", with: ""
-
     click_button "Update"
 
-    expect(page).to have_content("Email can't be blank")
-    expect(page).to have_content("Current password can't be blank")
+    expect(page).to have_content("Email")
   end
 end
