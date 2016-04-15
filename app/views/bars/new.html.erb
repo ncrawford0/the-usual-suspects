@@ -7,10 +7,12 @@
 
       <%= f.label :description, "Description:" %>
       <%= f.text_area :description %>
-      <div class="actions">
-        <%= f.submit "Add Bar" %>
-        <% end %>
-        <%= button_to "View all bars", bars_path, method: :get %>
+      <div id="review">
+        <div class="actions">
+          <%= f.submit "Add Bar" %>
+          <% end %>
+          <%= button_to "View all bars", bars_path, method: :get %>
+        </div>
       </div>
   </div>
 </div>

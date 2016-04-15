@@ -19,11 +19,13 @@
           <%= f.password_field :password_confirmation, autocomplete: "off" %>
         </div>
 
-        <div class="actions">
-          <%= f.submit "Change my password" %>
+        <div id="review">
+          <div class="actions">
+            <%= f.submit "Change my password" %>
+          </div>
+          <% end %>
+          <%= render "devise/shared/links" %>
         </div>
-        <% end %>
-        <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>
