@@ -38,7 +38,6 @@ class ReviewsController < ApplicationController
 
     if @review.save
       flash[:notice] = "Review added"
-      ReviewMailer.new_review(@review, @bar).deliver_later
       redirect_to bar_path(@bar)
     else
       flash[:alert] = @review.errors.full_messages.join(". ")
