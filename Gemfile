@@ -19,6 +19,7 @@ gem 'mailgun-ruby', require: 'mailgun'
 gem 'twitter'
 gem 'rails-mailgun', git: "git://github.com/code-mancers/rails-mailgun.git"
 gem 'pg_search'
+gem 'rails_12factor', group: :production
 
 group :doc do
   gem 'sdoc', require: false
@@ -27,7 +28,6 @@ end
 group :test, :development do
   gem 'rspec-rails'
   gem 'capybara-rails'
-  gem 'capybara-webkit'
   gem 'selenium-webdriver'
   gem 'kaminari'
   gem 'coveralls', require: false
