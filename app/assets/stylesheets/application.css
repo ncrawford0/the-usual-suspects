@@ -20,6 +20,7 @@
  .column h2 { font-family: "Roboto"; color: #2A282B; font-size: 24px; font-weight: 100; }
  .column h3 { font-family: "Open sans"; color: #2A282B; font-size: 30px; font-weight: 200; }
  .column h4 { font-family: "Open sans"; color: #2A282B; font-size: 28px; font-weight: 600; }
+ .row h5 { font-family: "Open sans"; color: #EFEFEF; font-size: 38px; font-weight: 600; }
 
 #bar-show { font-family: "Open sans"; color: #2A282B; font-size: 36px; font-weight: 200; }
 
@@ -43,6 +44,16 @@ input {
   padding: 20px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
+}
+
+#review2 {
+  background-color: transparent;
+  padding: 20px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 15px;
+  border: 1px solid #FFCC99;
+  width: 75%;
 }
 
 .actions *{
@@ -102,9 +113,9 @@ select#review_rating {
 
  .container-1 .icon{
    position: absolute;
-   top: 50%;
+   top: 30%;
    margin-left: 17px;
-   margin-top: 12px;
+   margin-top: 0px;
    z-index: 1;
    color: #2A282B;
  }

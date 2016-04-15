@@ -30,11 +30,13 @@
         <%= f.file_field :avatar %>
       </div>
 
-      <div class="actions">
-        <%= f.submit "Sign up" %>
+      <div id="review">
+        <div class="actions">
+          <%= f.submit "Sign up" %>
+          <% end %>
+          <%= button_to "Login", new_user_session_path, method: :get %>
+        </div>
       </div>
-      <% end %>
-      <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>

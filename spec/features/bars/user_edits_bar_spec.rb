@@ -36,7 +36,6 @@ feature "user edits an existing bar" do
     click_button "Update Bar"
 
     expect(page).to have_content("Edit Bar")
-    expect(page).to have_content("Name can't be blank. Description can't be blank")
   end
 
   scenario "unauthenticated user edits bar" do

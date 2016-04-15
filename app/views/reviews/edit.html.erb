@@ -3,12 +3,12 @@
     <h1>Edit Review</h1>
     <%= form_for [@bar, @review] do |f| %>
       <div class="field">
-        <%= f.label :title %></br>
+        <%= f.label :title %>
         <%= f.text_field :title %>
       </div>
 
       <div class="field">
-        <%= f.label :body, "Review" %></br>
+        <%= f.label :body, "Review" %>
         <%= f.text_field :body %>
       </div>
 
@@ -18,7 +18,7 @@
       </div>
 
       <div class="actions">
-        <%= f.submit "Save Changes" %></br>
+        <%= f.submit "Save Changes" %>
       </div>
     <% end %>
   </div>

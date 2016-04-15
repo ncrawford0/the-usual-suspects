@@ -1,32 +1,35 @@
 <div class="row">
- <div class="column">
-   </br>
-   <div id="bar">
-       <h1><%= @bar.name %></h1>
-       <li>
-       <p1>Average Rating:</p1>
-       <% rating_total = 0 %>
-       <% @reviews.each do |review| %>
-       <% rating_total += review.rating %>
-       <% end %>
-       <% average_rating = rating_total.to_f / @reviews.length %>
-       <%= average_rating.round(1) %>
-       </li>
-       <p1>Description: </p1><h2><%= @bar.description %></h2>
-       <p1>Address: </p1><h2><%= @bar.street %>
-       </br><%= @bar.state %>, <%= @bar.city %>, <%= @bar.zip %></h2>
-       <p1>Phone: </p1><h2><%= @bar.phone %></h2>
-           <% if @bar.website %></h2>
-       <p1>Website: </p1><h2><a href="https://<%= @bar.website%>" target="blank"><%= @bar.website%></a></h2>
-           <% end %>
-   </div>
+  <div class="column">
+    </br>
+    <div id="bar">
+        <h1><%= @bar.name %></h1>
+        <li>
+        <% if @reviews.any? %>
+        <p1>Average Rating:</p1>
+        <% rating_total = 0 %>
+        <% @reviews.each do |review| %>
+        <% rating_total += review.rating %>
+        <% end %>
+        <% average_rating = rating_total.to_f / @reviews.length %>
+        <%= average_rating.round(1) %>
+        <% end %>
+        </li>
+        <p1>Description: </p1><h2><%= @bar.description %></h2>
+        <p1>Address: </p1><h2><%= @bar.street %>
+        </br><%= @bar.state %>, <%= @bar.city %>, <%= @bar.zip %></h2>
+        <p1>Phone: </p1><h2><%= @bar.phone %></h2>
+            <% if @bar.website %></h2>
+        <p1>Website: </p1><h2><a href="https://<%= @bar.website%>" target="blank"><%= @bar.website%></a></h2>
+            <% end %>
+    </div>
 
-     <% if @bar.user == current_user %>
-     <div id="buttons-bar">
-       <%= button_to "Edit Bar", edit_bar_path(@bar), method: :get %>
-       <%= button_to "Delete Bar", bar_path(@bar), method: :delete %>
-     </div>
-     <% end %>
+      <% if @bar.user == current_user %>
+      <div id="buttons-bar">
+      </br>
+        <%= button_to "Edit Bar", edit_bar_path(@bar), method: :get %>
+        <%= button_to "Delete Bar", bar_path(@bar), method: :delete %>
+      </div>
+      <% end %>
 
        <% if @reviews.any? %>
      </br>
@@ -56,7 +59,7 @@
      </div>
    </br>
      <% end %>
-
+   </br>
      <h4>Add Review for <%= @bar.name %></h4>
        <%= form_for [@bar, @review] do |f| %>
        <div class="field">
@@ -64,23 +67,23 @@
          <%= f.text_field :title %>
        </div>
 
-       <div class="field">
-         <%= f.label :body, "Review:" %>
-         <%= f.text_area :body %>
-       </div>
+        <div class="field">
+          <%= f.label :body, "Review:" %>
+          <%= f.text_area :body %>
+        </div>
 
-       <div class="field">
-         <%= f.label :rating, "Rating:" %>
-         <%= f.select :rating, options_for_select(1..5) %>
-       </div>
+        <div class="field">
+          <%= f.label :rating, "Rating:" %>
+          <%= f.select :rating, options_for_select(1..5) %>
+        </div>
 
-       <div id="review">
-         <div class="actions">
-           <%= f.submit %>
-           <% end %>
-           <%= button_to "View All Bars", bars_path, method: :get %>
-         </div>
-       </div>
- </div>
+        <div id="review">
+          <div class="actions">
+            <%= f.submit %>
+            <% end %>
+            <%= button_to "View All Bars", bars_path, method: :get %>
+          </div>
+        </div>
+  </div>
 </div>
 <%= javascript_include_tag "application" %>
