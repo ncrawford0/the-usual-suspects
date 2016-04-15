@@ -32,11 +32,13 @@
       </div>
 
       <div>
-         <img src="<%=current_user.avatar%>" alt="avatar" height="42" width="42" class=avatar id="<%=current_user.id%>">
+         <img src="<%=current_user.avatar%>" alt="" height="42" width="42" class=avatar id="<%=current_user.id%>">
       </div>
 
+      <div class="field">
         <%= f.label :avatar %>
         <%= f.file_field :avatar %>
+      </div>
 
         <%= f.submit "Update" %>
         <% end %>
