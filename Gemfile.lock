@@ -64,9 +64,6 @@ GEM
       capybara-console
       database_cleaner
       exception_notification
-    capybara-webkit (1.10.1)
-      capybara (>= 2.3.0, < 2.8.0)
-      json
     carrierwave (0.11.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -200,6 +197,11 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.4)
     railties (4.2.6)
       actionpack (= 4.2.6)
       activesupport (= 4.2.6)
@@ -298,7 +300,6 @@ PLATFORMS
 
 DEPENDENCIES
   capybara-rails
-  capybara-webkit
   carrierwave
   coffee-rails (~> 4.0.0)
   coveralls
@@ -317,6 +318,7 @@ DEPENDENCIES
   pry-rails
   rails (= 4.2.6)
   rails-mailgun!
+  rails_12factor
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
